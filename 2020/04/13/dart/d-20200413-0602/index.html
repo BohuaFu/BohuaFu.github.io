@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-TW">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Dart," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="使用共享的 package本文的重点是什么？ Pub.dev 网站是 Dart 包主要的公共仓库。 遵循一些规定，比如一个有效的 pubspec.yaml 文件，使你的应用成为一个包。 如果你正在开发一款 Web 或服务端应用，请使用 Stagehand 工具生成相关初始化文件。 如果你正在开发一款 Web 或服务端应用，请使用 pub get 命令下载相关包。 如果你正在开发一款移动应用，请使用">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Dart 使用共享的package">
+<meta property="og:url" content="https://bohuafu.github.io/2020/04/13/dart/d-20200413-0602/index.html">
+<meta property="og:site_name" content="BH, 我的部落格">
+<meta property="og:description" content="使用共享的 package本文的重点是什么？ Pub.dev 网站是 Dart 包主要的公共仓库。 遵循一些规定，比如一个有效的 pubspec.yaml 文件，使你的应用成为一个包。 如果你正在开发一款 Web 或服务端应用，请使用 Stagehand 工具生成相关初始化文件。 如果你正在开发一款 Web 或服务端应用，请使用 pub get 命令下载相关包。 如果你正在开发一款移动应用，请使用">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://dart.cn/tutorials/images/libraries-folder.png">
+<meta property="og:image" content="https://dart.cn/tutorials/images/housekeeping-files.png">
+<meta property="og:image" content="https://dart.cn/tutorials/images/other-folders.png">
+<meta property="article:published_time" content="2020-04-12T22:06:02.000Z">
+<meta property="article:modified_time" content="2020-04-13T17:07:41.794Z">
+<meta property="article:author" content="Bohua Fu">
+<meta property="article:tag" content="Dart">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://dart.cn/tutorials/images/libraries-folder.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://bohuafu.github.io/2020/04/13/dart/d-20200413-0602/"/>
+
+
+
+
+
+  <title>Dart 使用共享的package | BH, 我的部落格</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-TW">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">BH, 我的部落格</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">學習・分享・改變</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://bohuafu.github.io/2020/04/13/dart/d-20200413-0602/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Bohua Fu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://github.com/BohuaFu/AssetsBH/blob/master/bh/avater/bh_avatar_001.jpg?raw=true">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BH, 我的部落格">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Dart 使用共享的package</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-04-13T06:06:02+08:00">
+                2020-04-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="使用共享的-package"><a href="#使用共享的-package" class="headerlink" title="使用共享的 package"></a>使用共享的 package</h2><h3 id="本文的重点是什么？"><a href="#本文的重点是什么？" class="headerlink" title="本文的重点是什么？"></a>本文的重点是什么？</h3><ul>
+<li><a href="https://pub.flutter-io.cn/" target="_blank" rel="noopener">Pub.dev 网站</a>是 Dart 包主要的公共仓库。</li>
+<li>遵循一些规定，比如一个有效的 pubspec.yaml 文件，使你的应用成为一个包。</li>
+<li>如果你正在开发一款 Web 或服务端应用，请使用 Stagehand 工具生成相关初始化文件。</li>
+<li>如果你正在开发一款 Web 或服务端应用，请使用 <code>pub get</code> 命令下载相关包。</li>
+<li>如果你正在开发一款移动应用，请使用 Flutter 工具。</li>
+</ul>
+<a id="more"></a>
+
+<p>当你可以创建和运行 Dart 应用时，你就已经准备复用其他程序员编写的代码了。<a href="https://pub.flutter-io.cn/" target="_blank" rel="noopener">pub.dev 网站</a> 仓库有许多可用的使用 Dart 代码编写的包。</p>
+<p>本教程将向你展示如何使用 <code>pub</code> 命令—Dart 的包管理命令—即用以安装仓库中某个包（比如 vector_math 包）的命令。你可以使用这些步骤来安装由 <a href="https://pub.flutter-io.cn/" target="_blank" rel="noopener">pub.dev 网站</a> 提供的任意一个包；当你想安装其它你想要使用的包时只需修改这些步骤中的示例包名即可。本教程同时也会向你展示一些你可能会使用到的优秀的包。</p>
+<blockquote>
+<p><strong>使用 Flutter 的请注意：</strong></p>
+<p>本文不会向你展示那些只针对 Flutter 的包，但是 Flutter 使用到的 Dart 包会被介绍，你也可以将你的包分享为可以在 Flutter、Web 或服务端应用上使用。更多相关信息，请查阅 <a href="https://flutter.cn/docs/development/packages-and-plugins/using-packages" target="_blank" rel="noopener">Flutter 包文档。</a></p>
+</blockquote>
+<h3 id="关于-pubspec-yaml-文件"><a href="#关于-pubspec-yaml-文件" class="headerlink" title="关于 pubspec.yaml 文件"></a>关于 pubspec.yaml 文件</h3><p>想要使用外部的包，你的应用其本身也必须是一个包。任何在顶层目录中包含有效 pubspec.yaml 文件的应用都是一个包，从而可以使该应用使用外部的包。</p>
+<p>你可以使用 Stagehand 工具来生成带有有效 pubspec.yaml 文件和目录结构的包。你可以使用命令行工具来调用 Stagehand 工具，也可以使用类似 IntelliJ 或 WebStorm 这样的 IDE 来间接使用 Stagehand 工具。</p>
+<p>你可以使用 <a href="https://dart.cn/tools/pub/cmd/pub-global" target="_blank" rel="noopener">pub global activate</a> 命令安装或更新 Stagehand 工具：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ pub global activate stagehand</span><br></pre></td></tr></table></figure>
+
+<p>现在你可以运行 <code>stagehand</code> 命令来查看它可以生成的模板文件：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ stagehand</span><br></pre></td></tr></table></figure>
+
+<p>你将会看到一系列的生成器，包括各种 Web 和服务端应用的。其中一个生成器叫<strong>console-full</strong>。</p>
+<p>在一个新建的名为 <code>vector_victor</code> 的目录中，使用 Stagehand 工具来生成一个命令行应用：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ mkdir vector_victor</span><br><span class="line">$ cd vector_victor</span><br><span class="line">$ stagehand console-full</span><br></pre></td></tr></table></figure>
+
+<p>pubspec.yaml 文件包含了由 YAML 语言撰写的包规格。（访问 <a href="https://dart.cn/tools/pub/pubspec" target="_blank" rel="noopener">Pubspec 格式 </a>获取更多深入的介绍。）而你的 pubspec.yaml 文件看起来则应该是这样的：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">name: vector_victor</span><br><span class="line">description: A sample command-line application.</span><br><span class="line"></span><br><span class="line">environment:</span><br><span class="line">  sdk: &#39;&gt;&#x3D;2.1.0 &lt;3.0.0&#39;</span><br><span class="line"></span><br><span class="line">#dependencies:</span><br><span class="line">#  path: ^1.4.1</span><br><span class="line"></span><br><span class="line">dev_dependencies:</span><br><span class="line">  test: ^1.0.0</span><br></pre></td></tr></table></figure>
+
+<h3 id="依赖包的命名"><a href="#依赖包的命名" class="headerlink" title="依赖包的命名"></a>依赖包的命名</h3><p>为了能够使用外部包，你需要将其添加到你应用 pubspec.yaml 文件的依赖里。依赖中的每一项都指定了你应用所使用的包名以及包版本。</p>
+<p>下面让我们为 vector_victor 应用添加一个名为 vector_math 的包，该包可以在 <a href="https://pub.flutter-io.cn/" target="_blank" rel="noopener">pub.dev 网站</a> 中找到。</p>
+<ol>
+<li><p>获取包当前的安装细节信息：</p>
+<ol>
+<li><p>打开 <a href="https://pub.flutter-io.cn/packages/vector_math" target="_blank" rel="noopener">pub.dev 网站中 vector_math 包的网页。</a></p>
+</li>
+<li><p>点击<strong>Installing</strong>标签。</p>
+</li>
+<li><p>拷贝示例 <em>dependencies</em> 实体中有 <em>vector_math</em> 的那一行。 <em>dependencies</em> 实体看起来像下面那样：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">dependencies:</span><br><span class="line">  vector_math: ^2.0.7</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+</li>
+<li><p>编辑 <code>pubspec.yaml</code> 文件。</p>
+</li>
+<li><p>在 dependencies 部分，将上面你从 pub.dev 网站拷贝来的文本粘贴添加至这里。这里要注意缩进；必须严格按照 YAML 语言规范！例如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">environment:</span><br><span class="line">  sdk: &#39;&gt;&#x3D;2.1.0 &lt;3.0.0&#39;</span><br><span class="line"></span><br><span class="line">dependencies:</span><br><span class="line">  vector_math: ^2.0.7</span><br><span class="line"></span><br><span class="line">dev_dependencies:</span><br><span class="line">  test: ^1.0.0</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<p>你可以查阅 <a href="https://dart.cn/tools/pub/versioning" target="_blank" rel="noopener">Pub 版本管理</a> 获取更多有关版本号含义以及格式化的相关信息。</p>
+<p><a href="https://pub.flutter-io.cn/" target="_blank" rel="noopener">pub.dev 网站</a> 是 Dart 包主要的公共仓库。<code>pub</code> 命令在解析包依赖时会自动去该网站进行检查。如果你想使用该网站的某个包，你可以像我们上面所说的那样在 dependencies 中指定对应的包名。</p>
+<h3 id="安装依赖包"><a href="#安装依赖包" class="headerlink" title="安装依赖包"></a>安装依赖包</h3><p>如果你使用 IDE 或适配了 Dart 语言开发的编辑器去编辑 <code>pubspec.yaml</code> 文件，其可能会在你编辑了该文件后自动下载安装相关的依赖包。</p>
+<p>否则，你只能手动地执行 <a href="https://dart.cn/tools/pub/cmd/pub-get" target="_blank" rel="noopener">pub get</a> 命令进行下载安装：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ pub get</span><br><span class="line">Resolving dependencies...</span><br><span class="line">+ vector_math 2.0.7</span><br><span class="line">Changed 1 dependency!</span><br><span class="line">Precompiling executables...</span><br><span class="line">Precompiled vector_math:mesh_generator.</span><br></pre></td></tr></table></figure>
+
+<p><code>pub get</code> 命令会安装你应用依赖列表中的包。而每一个包可能还会包含其它的库或资源，Pub 同样会将它们依次安装；如果一个依赖包已经安装过，则会直接使用。Pub 会缓存你应用依赖过的每一个包并将其缓存至一个名为 <code>.packages</code> 的文件中。</p>
+<p>Pub 会创建一个名为 <code>pubspec.lock</code> 的文件来标识哪些包的哪些版本已经安装过。此举可以为开发者提供一个稳定的开发环境。你也可以修改包版本并使用 <code>pub upgrade</code> 命令来更新包。</p>
+<h3 id="你可以从中获取（或不可获取）什么？"><a href="#你可以从中获取（或不可获取）什么？" class="headerlink" title="你可以从中获取（或不可获取）什么？"></a>你可以从中获取（或不可获取）什么？</h3><p>除了 Dart 库以外，vector_math 包可能包含其它对你有用但不会安装到你应用目录的资源。让我们后退一步看看你在依赖包时得到了什么以及从何而来。</p>
+<p>访问 <a href="https://github.com/johnmccutchan/vector_math" target="_blank" rel="noopener">Dart 数学矢量仓库 </a> 的 Github 仓库查看 vector_math 包的具体内容。尽管该仓库中有大量的文件和目录，但是只有 <code>lib</code> 目录下的文件会在你执行 pub get 命令时安装。</p>
+<hr>
+<p><img src="https://dart.cn/tutorials/images/libraries-folder.png" alt="Dart libraries directory"></p>
+<p><em>Dart libraries:</em> <em>Dart 库：</em> The lib directory contains one or more Dart libraries, which can be imported into your Dart programs. lib 目录包含一个或多个可以安装到你 Dart 程序的 Dart 库。</p>
+<hr>
+<p><img src="https://dart.cn/tutorials/images/housekeeping-files.png" alt="Housekeeping files"></p>
+<p><em>Housekeeping files:</em> <em>管理文件：</em> When using a package written by someone else, the <code>README.md</code> file is a good place to start. It should contain important information about the package, such as its intent, contents, samples, and instructions. The <code>LICENSE</code> file provides copyright and rules-of-use information. All of these files are in the package repository; the contents of some, such as <code>README.md</code>, are also displayed in pub.dev. These files aren’t installed when you install a package. 当使用别人开发的包时，README 文件是了解该包最好的地方。它会包含与包相关的重要信息，比如开发包时的想法、包的相关内容、示例以及使用说明。 LICENSE 文件则包含了版权信息以及使用规则信息。所有文件均在包仓库中，且在你安装包时它们不会被下载。而 <code>README.md</code> 中的内容同样也会展示在 pub.dev。</p>
+<hr>
+<p><img src="https://dart.cn/tutorials/images/other-folders.png" alt="Document, scripts, tests, and other resources"></p>
+<p><em>Other resources:</em> <em>其它资源：</em> Along with Dart libraries, a package might also contain other resources such as example code, tests, scripts, and documentation. If a package contains these resources, they should be in the directories as specified in the pub 包可能会包含库以外的其它资源，比如示例代码、测试、脚本以及文档。如果包中包含诸如此类的信息，它们会存放在 Pub 指定的目录中。 <a href="https://dart.cn/tools/pub/package-layout" target="_blank" rel="noopener">conventions</a>.</p>
+<hr>
+<h2 id="从包中导入库"><a href="#从包中导入库" class="headerlink" title="从包中导入库"></a>从包中导入库</h2><p>现在你已经安装了包，你可以在你的应用中导入和使用包中的库。</p>
+<p>与 SDK 库一样，使用_ import_ 关键字导入使用安装了的库中的代码。Dart SDK 库是内置的且由特殊的 <code>dart:</code> 前缀标识。如果你使用由 pub 命令安装的外部库，请使用 <code>package:</code> 前缀。</p>
+<ol>
+<li><p>获取包中主要库的导入流程：</p>
+<ol>
+<li><p>打开 <a href="https://pub.flutter-io.cn/packages/vector_math" target="_blank" rel="noopener">pub.dev 网站中 vector_math 包的网页。</a></p>
+</li>
+<li><p>点击<strong>Installing</strong>标签。</p>
+</li>
+<li><p>拷贝有<strong>import</strong>的这一行代码。其看起来像下面这样：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">import &#39;package:vector_math&#x2F;vector_math.dart&#39;;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+</li>
+<li><p>在你的 vector_victor 应用中，编辑 <code>lib/vector_victor.dart</code> 文件，由此它导入 vector_math 库并使用了它的一些 API。你可以阅读 <a href="https://pub.flutter-io.cn/documentation/vector_math/latest" target="_blank" rel="noopener">vector_math API 文档</a> 获取更多相关信息。</p>
+<blockquote>
+<p><strong>注意：</strong>当你从包中导入一个库时你指定的是文件名而不是库名。</p>
+</blockquote>
+</li>
+</ol>
+<h2 id="其它资源"><a href="#其它资源" class="headerlink" title="其它资源"></a>其它资源</h2><ul>
+<li>Dart 开发者们在 <a href="https://pub.flutter-io.cn/" target="_blank" rel="noopener">pub.dev site</a> 分享它们开发的包。你可以在那里查找你想要使用的包或者分享你自己开发的包。</li>
+<li>你也可以查阅 <a href="https://dart.cn/guides/packages" target="_blank" rel="noopener">pub 包文档</a> 获取更多有关如何使用和分享包的信息。</li>
+</ul>
+<p>BohuaFu整理</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Dart/" rel="tag"><i class="fa fa-tag"></i> Dart</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/04/13/dart/d-20200413-0601/" rel="next" title="Dart Pub的鏡像站">
+                <i class="fa fa-chevron-left"></i> Dart Pub的鏡像站
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/04/13/dart/d-20200413-0901/" rel="prev" title="Dart 社區與支援">
+                Dart 社區與支援 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="https://github.com/BohuaFu/AssetsBH/blob/master/bh/avater/bh_avatar_001.jpg?raw=true"
+                alt="Bohua Fu" />
+            
+              <p class="site-author-name" itemprop="name">Bohua Fu</p>
+              <p class="site-description motion-element" itemprop="description">The stars change, but the mind remains the same.</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/%7C%7C%20archive">
+              
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/BohuaFu" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://bohuafu.github.io/" title="BH" target="_blank">BH</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#使用共享的-package"><span class="nav-number">1.</span> <span class="nav-text">使用共享的 package</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#本文的重点是什么？"><span class="nav-number">1.1.</span> <span class="nav-text">本文的重点是什么？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#关于-pubspec-yaml-文件"><span class="nav-number">1.2.</span> <span class="nav-text">关于 pubspec.yaml 文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#依赖包的命名"><span class="nav-number">1.3.</span> <span class="nav-text">依赖包的命名</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装依赖包"><span class="nav-number">1.4.</span> <span class="nav-text">安装依赖包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#你可以从中获取（或不可获取）什么？"><span class="nav-number">1.5.</span> <span class="nav-text">你可以从中获取（或不可获取）什么？</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#从包中导入库"><span class="nav-number">2.</span> <span class="nav-text">从包中导入库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其它资源"><span class="nav-number">3.</span> <span class="nav-text">其它资源</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Bohua Fu</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
