@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-TW">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Dart," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Dart安裝 (for Windows)虽然 DartPad 是学习如何编写简单应用程序的好方法， 但是一旦要准备开发真正的应用程序时，你需要安装一个 SDK 。 Dart SDKThe Dart SDK has the libraries and command-line tools that you need to develop Dart apps. To learn about other">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Dart 安裝 (for Windows)">
+<meta property="og:url" content="https://bohuafu.github.io/2020/04/13/dart/d-20200413-0002/index.html">
+<meta property="og:site_name" content="BH, 我的部落格">
+<meta property="og:description" content="Dart安裝 (for Windows)虽然 DartPad 是学习如何编写简单应用程序的好方法， 但是一旦要准备开发真正的应用程序时，你需要安装一个 SDK 。 Dart SDKThe Dart SDK has the libraries and command-line tools that you need to develop Dart apps. To learn about other">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://github.com/BohuaFu/AssetsBH/blob/master/dart/dart_00002.png?raw=true">
+<meta property="og:image" content="https://www.dartcn.com/assets/shared/dart/installer-screenshot-no-272278ce31f0cd3b44fbd998c55b83c945cd6c1f774de0258bf81a6fa7dcc563.png">
+<meta property="article:published_time" content="2020-04-12T22:00:02.000Z">
+<meta property="article:modified_time" content="2020-04-13T09:31:23.298Z">
+<meta property="article:author" content="Bohua Fu">
+<meta property="article:tag" content="Dart">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://github.com/BohuaFu/AssetsBH/blob/master/dart/dart_00002.png?raw=true">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://bohuafu.github.io/2020/04/13/dart/d-20200413-0002/"/>
+
+
+
+
+
+  <title>Dart 安裝 (for Windows) | BH, 我的部落格</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-TW">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">BH, 我的部落格</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">學習・分享・改變</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://bohuafu.github.io/2020/04/13/dart/d-20200413-0002/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Bohua Fu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://github.com/BohuaFu/AssetsBH/blob/master/bh/avater/bh_avatar_001.jpg?raw=true">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BH, 我的部落格">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Dart 安裝 (for Windows)</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-04-13T06:00:02+08:00">
+                2020-04-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="Dart安裝-for-Windows"><a href="#Dart安裝-for-Windows" class="headerlink" title="Dart安裝 (for Windows)"></a>Dart安裝 (for Windows)</h2><p>虽然 <a href="https://dartpad.cn/" target="_blank" rel="noopener">DartPad</a> 是学习如何编写简单应用程序的好方法， 但是一旦要准备开发真正的应用程序时，你需要安装一个 SDK 。</p>
+<h3 id="Dart-SDK"><a href="#Dart-SDK" class="headerlink" title="Dart SDK"></a>Dart SDK</h3><p>The Dart SDK has the libraries and command-line tools that you need to develop Dart apps. To learn about other tools you can use for Dart development, see <a href="https://www.dartcn.com/tools" target="_blank" rel="noopener">Dart Tools</a>.</p>
+<h3 id="DownLoad-the-Dart"><a href="#DownLoad-the-Dart" class="headerlink" title="DownLoad the Dart"></a>DownLoad the Dart</h3><p>Yu can use the community-supported <a href="http://www.gekorm.com/dart-windows" target="_blank" rel="noopener">Dart SDK installer for Windows.</a> You can use the wizard to install <strong>stable</strong> or <strong>dev</strong> versions of the Dart SDK.</p>
+<p><img src="https://github.com/BohuaFu/AssetsBH/blob/master/dart/dart_00002.png?raw=true" alt=""></p>
+<h3 id="Installation-the-Dart"><a href="#Installation-the-Dart" class="headerlink" title="Installation the Dart"></a>Installation the Dart</h3><p>有下列兩種方法可以安裝 :</p>
+<ul>
+<li>Install using Chocolatey</li>
+<li>Install using a setup wizard</li>
+</ul>
+<h4 id="Install-using-Chocolatey"><a href="#Install-using-Chocolatey" class="headerlink" title="Install using Chocolatey"></a>Install using Chocolatey</h4><p>To use <a href="https://chocolatey.org/" target="_blank" rel="noopener">Chocolatey</a> to install a <strong>stable</strong> release of the Dart SDK, run this command:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C:\&gt; choco install dart-sdk</span><br></pre></td></tr></table></figure>
+
+<p>To install a <strong>dev</strong> release, run this command:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C:\&gt; choco install dart-sdk --pre</span><br></pre></td></tr></table></figure>
+
+<p>To <strong>upgrade</strong> the Dart SDK, run this command (add <code>--pre</code> to upgrade the dev release):</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C:\&gt; choco upgrade dart-sdk</span><br></pre></td></tr></table></figure>
+
+<h4 id="Install-using-a-setup-wizard"><a href="#Install-using-a-setup-wizard" class="headerlink" title="Install using a setup wizard"></a>Install using a setup wizard</h4><p>You can use the wizard to install <strong>stable</strong> or <strong>dev</strong> versions of the Dart SDK.</p>
+<p>无脑安装即可，安装器将将自动配置与dart相关的环境变量到操作系统中。</p>
+<p> (我習慣安裝在D:\Dart)</p>
+<p><img src="https://www.dartcn.com/assets/shared/dart/installer-screenshot-no-272278ce31f0cd3b44fbd998c55b83c945cd6c1f774de0258bf81a6fa7dcc563.png" alt="Windows Dart Setup Wizard"></p>
+<h3 id="配置環境變量"><a href="#配置環境變量" class="headerlink" title="配置環境變量"></a>配置環境變量</h3><p>我們需要在環境中設定相關環境變量。 (此處已安裝目錄為D:\Dart來舉例)</p>
+<table>
+<thead>
+<tr>
+<th>path (請添加)</th>
+<th>D:\Dart\dart-sdk\bin</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Dart_SDK (新增)</td>
+<td>D:\Dart\dart-sdk</td>
+</tr>
+</tbody></table>
+<h3 id="验证安装结果"><a href="#验证安装结果" class="headerlink" title="验证安装结果"></a>验证安装结果</h3><p>打开命令行，输入 dart –version。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dart --version</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="What’s-in-the-SDK"><a href="#What’s-in-the-SDK" class="headerlink" title="What’s in the SDK"></a>What’s in the SDK</h2><p>The Dart SDK includes a <code>lib</code> directory for the <a href="https://www.dartcn.com/guides/libraries/library-tour" target="_blank" rel="noopener">Dart libraries</a> and a <code>bin</code> directory that has these command-line tools:</p>
+<ul>
+<li><p><a href="https://www.dartcn.com/dart-vm" target="_blank" rel="noopener">dart</a></p>
+<p>The standalone VM</p>
+</li>
+<li><p><a href="https://webdev.dartlang.org/tools/dart2js" target="_blank" rel="noopener">dart2js</a></p>
+<p>The Dart-to-JavaScript compiler (used only for web development)</p>
+</li>
+<li><p><a href="https://github.com/dart-lang/sdk/tree/master/pkg/analyzer_cli#dartanalyzer" target="_blank" rel="noopener">dartanalyzer</a></p>
+<p>The static analyzer</p>
+</li>
+<li><p><a href="https://webdev.dartlang.org/tools/dartdevc" target="_blank" rel="noopener">dartdevc</a></p>
+<p>The Dart development compiler (used only for web development)</p>
+</li>
+<li><p><a href="https://github.com/dart-lang/dartdoc#dartdoc" target="_blank" rel="noopener">dartdoc</a></p>
+<p>The API documentation generator</p>
+</li>
+<li><p><a href="https://github.com/dart-lang/dart_style#readme" target="_blank" rel="noopener">dartfmt</a></p>
+<p>The Dart code formatter</p>
+</li>
+<li><p><a href="https://www.dartcn.com/tools/pub" target="_blank" rel="noopener">pub</a></p>
+<p>The Dart package manager</p>
+</li>
+</ul>
+<p>For more information about the SDK, see its <a href="https://github.com/dart-lang/sdk/blob/master/README.dart-sdk" target="_blank" rel="noopener">README file.</a></p>
+<h2 id="About-release-channels-and-version-strings"><a href="#About-release-channels-and-version-strings" class="headerlink" title="About release channels and version strings"></a>About release channels and version strings</h2><p>The Dart SDK has two release channels:</p>
+<ul>
+<li><strong>stable</strong> channel: <strong>stable releases</strong>, updated no more frequently than every 6 weeks; currently <code>2.7.2</code>.</li>
+<li><strong>dev</strong> channel: <strong>pre-releases</strong>, usually updated 1/week; currently <code>2.8.0-dev.20.0</code>.</li>
+</ul>
+<p><strong>Warning:</strong> To give you early access to new features and fixes, dev channel releases are not as heavily tested as the stable release.</p>
+<p><strong>Stable</strong> channel releases of the Dart SDK have version strings like <code>1.24.3</code> and <code>2.0.0</code>. They consist of dot-separated integers, with no hyphens or letters.</p>
+<p><strong>Dev</strong> channel releases of the Dart SDK (pre-releases) have additional characters, starting with a hyphen (<code>-</code>). For example, Dart 2 pre-releases have version numbers starting with <code>2.0.0-dev</code> such as <code>2.0.0-dev.69.5</code>.</p>
+<p>For more information, see the <a href="https://www.dartcn.com/dart-2" target="_blank" rel="noopener">Dart 2 page.</a></p>
+<h2 id="Filing-bugs-and-feature-requests"><a href="#Filing-bugs-and-feature-requests" class="headerlink" title="Filing bugs and feature requests"></a>Filing bugs and feature requests</h2><p>To see existing issues or create a new one, go to <a href="http://dartbug.com/" target="_blank" rel="noopener">dartbug.com</a>. Here are some handy searches:</p>
+<ul>
+<li><a href="https://github.com/dart-lang/sdk/labels/Area-VM" target="_blank" rel="noopener">dart (VM) issues</a></li>
+<li><a href="https://github.com/dart-lang/sdk/labels/Area-Analyzer" target="_blank" rel="noopener">dartanalyzer issues</a></li>
+<li><a href="https://github.com/dart-lang/dartdoc/issues" target="_blank" rel="noopener">dartdoc issues</a></li>
+<li><a href="https://github.com/dart-lang/sdk/labels/Area-Pub" target="_blank" rel="noopener">pub issues</a></li>
+<li><a href="https://github.com/dart-lang/sdk/issues" target="_blank" rel="noopener">issues for the SDK as a whole</a></li>
+</ul>
+<p>BohuaFu整理</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Dart/" rel="tag"><i class="fa fa-tag"></i> Dart</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/04/13/dart/d-20200413-0001/" rel="next" title="Dart 概述">
+                <i class="fa fa-chevron-left"></i> Dart 概述
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/04/13/dart/d-20200413-0010/" rel="prev" title="Dart 社區與支援">
+                Dart 社區與支援 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="https://github.com/BohuaFu/AssetsBH/blob/master/bh/avater/bh_avatar_001.jpg?raw=true"
+                alt="Bohua Fu" />
+            
+              <p class="site-author-name" itemprop="name">Bohua Fu</p>
+              <p class="site-description motion-element" itemprop="description">The stars change, but the mind remains the same.</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/%7C%7C%20archive">
+              
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/BohuaFu" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://bohuafu.github.io/" title="BH" target="_blank">BH</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Dart安裝-for-Windows"><span class="nav-number">1.</span> <span class="nav-text">Dart安裝 (for Windows)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Dart-SDK"><span class="nav-number">1.1.</span> <span class="nav-text">Dart SDK</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DownLoad-the-Dart"><span class="nav-number">1.2.</span> <span class="nav-text">DownLoad the Dart</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Installation-the-Dart"><span class="nav-number">1.3.</span> <span class="nav-text">Installation the Dart</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Install-using-Chocolatey"><span class="nav-number">1.3.1.</span> <span class="nav-text">Install using Chocolatey</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Install-using-a-setup-wizard"><span class="nav-number">1.3.2.</span> <span class="nav-text">Install using a setup wizard</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置環境變量"><span class="nav-number">1.4.</span> <span class="nav-text">配置環境變量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#验证安装结果"><span class="nav-number">1.5.</span> <span class="nav-text">验证安装结果</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#What’s-in-the-SDK"><span class="nav-number">2.</span> <span class="nav-text">What’s in the SDK</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#About-release-channels-and-version-strings"><span class="nav-number">3.</span> <span class="nav-text">About release channels and version strings</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Filing-bugs-and-feature-requests"><span class="nav-number">4.</span> <span class="nav-text">Filing bugs and feature requests</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Bohua Fu</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
