@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-TW">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Dart," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Dart 異步支持这里将介绍 Dart 主要功能，異步支持的相關知識，假设您已经知道如何使用其他语言编程。 打开 DartPad">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Dart 異步支持">
+<meta property="og:url" content="https://bohuafu.github.io/2020/04/13/dart/d-20200413-0009/index.html">
+<meta property="og:site_name" content="BH, 我的部落格">
+<meta property="og:description" content="Dart 異步支持这里将介绍 Dart 主要功能，異步支持的相關知識，假设您已经知道如何使用其他语言编程。 打开 DartPad">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://www.dartcn.com/assets/red-run-50a66e01c7e7a877dbc06e799d5bc4b73c4dace2926ec17b4493d8c3e939c59a.png">
+<meta property="article:published_time" content="2020-04-12T22:00:09.000Z">
+<meta property="article:modified_time" content="2020-04-14T06:31:41.300Z">
+<meta property="article:author" content="Bohua Fu">
+<meta property="article:tag" content="Dart">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://www.dartcn.com/assets/red-run-50a66e01c7e7a877dbc06e799d5bc4b73c4dace2926ec17b4493d8c3e939c59a.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://bohuafu.github.io/2020/04/13/dart/d-20200413-0009/"/>
+
+
+
+
+
+  <title>Dart 異步支持 | BH, 我的部落格</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-TW">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">BH, 我的部落格</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">學習・分享・改變</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://bohuafu.github.io/2020/04/13/dart/d-20200413-0009/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Bohua Fu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://github.com/BohuaFu/AssetsBH/blob/master/bh/avater/bh_avatar_001.jpg?raw=true">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BH, 我的部落格">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Dart 異步支持</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-04-13T06:00:09+08:00">
+                2020-04-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="Dart-異步支持"><a href="#Dart-異步支持" class="headerlink" title="Dart 異步支持"></a>Dart 異步支持</h2><p>这里将介绍 Dart 主要功能，異步支持的相關知識，假设您已经知道如何使用其他语言编程。</p>
+<p><strong><a href="https://dartpad.cn/" target="_blank" rel="noopener">打开 DartPad</a></strong></p>
+<a id="more"></a>
+
+<h2 id="异步支持"><a href="#异步支持" class="headerlink" title="异步支持"></a>异步支持</h2><p>Dart 库中包含许多返回 Future 或 Stream 对象的函数. 这些函数在设置完耗时任务（例如 I/O 曹组）后， 就立即返回了，不会等待耗任务完成。 使用 <code>async</code> 和 <code>await</code> 关键字实现异步编程。 可以让你像编写同步代码一样实现异步操作。</p>
+<h3 id="处理-Future"><a href="#处理-Future" class="headerlink" title="处理 Future"></a>处理 Future</h3><p>可以通过下面两种方式，获得 Future 执行完成的结果：</p>
+<ul>
+<li>使用 <code>async</code> 和 <code>await</code>.</li>
+<li>使用 Future API，具体描述，参考 <a href="https://www.dartcn.com/guides/libraries/library-tour#future" target="_blank" rel="noopener">库概览</a>.</li>
+</ul>
+<p>使用 <code>async</code> 和 <code>await</code> 关键字的代码是异步的。 虽然看起来有点想同步代码。 例如，下面的代码使用 <code>await</code> 等待异步函数的执行结果。</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">await</span> lookUpVersion();</span><br></pre></td></tr></table></figure>
+
+<p>要使用 <code>await</code> ， 代码必须在 <em>异步函数</em>（使用 <code>async</code> 标记的函数）中：</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Future checkVersion() <span class="keyword">async</span> &#123;</span><br><span class="line">  <span class="keyword">var</span> version = <span class="keyword">await</span> lookUpVersion();</span><br><span class="line">  <span class="comment">// Do something with version</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong> 虽然异步函数可能会执行耗时的操作， 但它不会等待这些操作。 相反，异步函数只有在遇到第一个 await 表达式（<a href="https://github.com/dart-lang/sdk/blob/master/docs/newsletter/20170915.md#synchronous-async-start" target="_blank" rel="noopener">详情见</a>）时才会执行。 也就是说，它返回一个 Future 对象， 仅在await表达式完成后才恢复执行。</p>
+<p>使用 <code>try</code>， <code>catch</code>， 和 <code>finally</code> 来处理代码中使用 <code>await</code> 导致的错误。</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">  version = <span class="keyword">await</span> lookUpVersion();</span><br><span class="line">&#125; <span class="keyword">catch</span> (e) &#123;</span><br><span class="line">  <span class="comment">// React to inability to look up the version</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在一个异步函数中可以多次使用 <code>await</code> 。 例如，下面代码中等待了三次函数结果：</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> entrypoint = <span class="keyword">await</span> findEntrypoint();</span><br><span class="line"><span class="keyword">var</span> exitCode = <span class="keyword">await</span> runExecutable(entrypoint, args);</span><br><span class="line"><span class="keyword">await</span> flushThenExit(exitCode);</span><br></pre></td></tr></table></figure>
+
+<p>在 <code>await *表达式*</code> 中， <code>*表达式*</code> 的值通常是一个 Future 对象； 如果不是，这是表达式的值会被自动包装成一个 Future 对象。 Future 对象指明返回一个对象的承诺（promise）。 <code>await *表达式*</code> 执行的结果为这个返回的对象。 await 表达式会阻塞代码的执行，直到需要的对象返回为止。</p>
+<p><strong>如果在使用 <code>await</code> 导致编译时错误， 确认 <code>await</code> 是否在一个异步函数中。</strong> 例如，在应用的 <code>main()</code> 函数中使用 <code>await</code> ， <code>main()</code> 函数的函数体必须被标记为 <code>async</code> ：</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Future main() <span class="keyword">async</span> &#123;</span><br><span class="line">  checkVersion();</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">'In main: version is <span class="subst">$&#123;await lookUpVersion()&#125;</span>'</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="声明异步函数"><a href="#声明异步函数" class="headerlink" title="声明异步函数"></a>声明异步函数</h3><p>函数体被 <code>async</code> 标示符标记的函数，即是一个_异步函数_。 将 <code>async</code> 关键字添加到函数使其返回Future。 例如，考虑下面的同步函数，它返回一个 String ：</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">String</span> lookUpVersion() =&gt; <span class="string">'1.0.0'</span>;</span><br></pre></td></tr></table></figure>
+
+<p>例如，将来的实现将非常耗时，将其更改为异步函数，返回值是 Future 。</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Future&lt;<span class="built_in">String</span>&gt; lookUpVersion() <span class="keyword">async</span> =&gt; <span class="string">'1.0.0'</span>;</span><br></pre></td></tr></table></figure>
+
+<p>注意，函数体不需要使用Future API。 如有必要， Dart 会创建 Future 对象。</p>
+<p>如果函数没有返回有效值， 需要设置其返回类型为 <code>Future</code> 。</p>
+<h3 id="处理-Stream"><a href="#处理-Stream" class="headerlink" title="处理 Stream"></a>处理 Stream</h3><p>当需要从 Stream 中获取数据值时， 可以通过一下两种方式：</p>
+<ul>
+<li>使用 <code>async</code> 和 一个 <em>异步循环</em> （<code>await for</code>）。</li>
+<li>使用 Stream API, 更多详情，参考 <a href="https://www.dartcn.com/guides/libraries/library-tour#stream" target="_blank" rel="noopener">in the library tour</a>。</li>
+</ul>
+<p><strong>提示：</strong> 在使用 <code>await for</code> 前，确保代码清晰， 并且确实希望等待所有流的结果。 例如，通常不应该使用 <code>await for</code> 的UI事件侦听器， 因为UI框架会发送无穷无尽的事件流。</p>
+<p>一下是异步for循环的使用形式：</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">await</span> <span class="keyword">for</span> (varOrType identifier <span class="keyword">in</span> expression) &#123;</span><br><span class="line">  <span class="comment">// Executes each time the stream emits a value.</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>上面 <code>*表达式*</code> 返回的值必须是 Stream 类型。 执行流程如下：</p>
+<ol>
+<li>等待，直到流发出一个值。</li>
+<li>执行 for 循环体，将变量设置为该发出的值</li>
+<li>重复1和2，直到关闭流。</li>
+</ol>
+<p>使用 break<code>或者</code>return<code>语句可以停止接收 stream 的数据， 这样就跳出了 for 循环， 并且从 stream 上取消注册。 **如果在实现异步 for 循环时遇到编译时错误， 请检查确保</code>await for<code>处于异步函数中。** 例如，要在应用程序的</code>main()<code>函数中使用异步 fo r循环，</code>main()<code>函数体必须标记为</code>async` ：</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Future main() <span class="keyword">async</span> &#123;</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">  <span class="keyword">await</span> <span class="keyword">for</span> (<span class="keyword">var</span> request <span class="keyword">in</span> requestServer) &#123;</span><br><span class="line">    handleRequest(request);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>有关异步编程的更多信息，请参考 <a href="https://www.dartcn.com/guides/libraries/library-tour#dartasync---asynchronous-programming" target="_blank" rel="noopener">dart:async</a> 部分。 同时也可参考文章 <a href="https://www.dartcn.com/articles/language/await-async" target="_blank" rel="noopener">Dart Language Asynchrony Support: Phase 1</a> 和 <a href="https://www.dartcn.com/articles/language/beyond-async" target="_blank" rel="noopener">Dart Language Asynchrony Support: Phase 2</a>, 以及 <a href="https://www.dartcn.com/guides/language/spec" target="_blank" rel="noopener">Dart language specification</a> 。</p>
+<h2 id="生成器"><a href="#生成器" class="headerlink" title="生成器"></a>生成器</h2><p>当您需要延迟生成( lazily produce )一系列值时， 可以考虑使用_生成器函数_。 Dart 内置支持两种生成器函数：</p>
+<ul>
+<li><strong>Synchronous</strong> 生成器： 返回一个 <strong><a href="https://api.dartlang.org/stable/dart-core/Iterable-class.html" target="_blank" rel="noopener">Iterable</a></strong> 对象。</li>
+<li><strong>Asynchronous</strong> 生成器： 返回一个 <strong><a href="https://api.dartlang.org/stable/dart-async/Stream-class.html" target="_blank" rel="noopener">Stream</a></strong> 对象。</li>
+</ul>
+<p>通过在函数体标记 <code>sync*</code>， 可以实现一个<strong>同步</strong>生成器函数。 使用 <code>yield</code> 语句来传递值：</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Iterable</span>&lt;<span class="built_in">int</span>&gt; naturalsTo(<span class="built_in">int</span> n) <span class="keyword">sync</span>* &#123;</span><br><span class="line">  <span class="built_in">int</span> k = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">while</span> (k &lt; n) <span class="keyword">yield</span> k++;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>通过在函数体标记 <code>async*</code>， 可以实现一个<strong>异步</strong>生成器函数。 使用 <code>yield</code> 语句来传递值：</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Stream&lt;<span class="built_in">int</span>&gt; asynchronousNaturalsTo(<span class="built_in">int</span> n) <span class="keyword">async</span>* &#123;</span><br><span class="line">  <span class="built_in">int</span> k = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">while</span> (k &lt; n) <span class="keyword">yield</span> k++;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>如果生成器是递归的，可以使用 <code>yield*</code> 来提高其性能：</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Iterable</span>&lt;<span class="built_in">int</span>&gt; naturalsDownFrom(<span class="built_in">int</span> n) <span class="keyword">sync</span>* &#123;</span><br><span class="line">  <span class="keyword">if</span> (n &gt; <span class="number">0</span>) &#123;</span><br><span class="line">    <span class="keyword">yield</span> n;</span><br><span class="line">    <span class="keyword">yield</span>* naturalsDownFrom(n - <span class="number">1</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>有关生成器的更多信息，请参考文章 <a href="https://www.dartcn.com/articles/language/beyond-async" target="_blank" rel="noopener">Dart Language Asynchrony Support: Phase 2</a> 。</p>
+<h2 id="可调用类"><a href="#可调用类" class="headerlink" title="可调用类"></a>可调用类</h2><p>通过实现类的 call() 方法， 能够让类像函数一样被调用。</p>
+<p>在下面的示例中，<code>WannabeFunction</code> 类定义了一个 call() 函数， 函数接受三个字符串参数，函数体将三个字符串拼接，字符串间用空格分割，并在结尾附加了一个感叹号。 单击运行按钮 <img src="https://www.dartcn.com/assets/red-run-50a66e01c7e7a877dbc06e799d5bc4b73c4dace2926ec17b4493d8c3e939c59a.png" alt="img"> 执行代码。</p>
+<iframe src="https://dartpad.cn/embed-inline.html?id=405379bacf30335f3aed&amp;verticalRatio=73" width="100%" height="240px" style="box-sizing: border-box; color: rgb(33, 37, 41); font-family: Roboto, sans-serif; font-size: 16px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255); text-decoration-style: initial; text-decoration-color: initial; border: 1px solid rgb(204, 204, 204);"></iframe>
+
+
+
+<p>有关把类当做方法使用的更多信息，请参考 <a href="https://www.dartcn.com/articles/language/emulating-functions" target="_blank" rel="noopener">Emulating Functions in Dart</a> 。</p>
+<h2 id="Isolates"><a href="#Isolates" class="headerlink" title="Isolates"></a>Isolates</h2><p>大多数计算机中，甚至在移动平台上，都在使用多核CPU。 为了有效利用多核性能，开发者一般使用共享内存数据来保证多线程的正确执行。 然而， 多线程共享数据通常会导致很多潜在的问题，并导致代码运行出错。</p>
+<p>所有 Dart 代码都在<em>隔离区</em>（ isolates ）内运行，而不是线程。 每个隔离区都有自己的内存堆，确保每个隔离区的状态都不会被其他隔离区访问。</p>
+<p>有关更多信息，请参考 <a href="https://api.dartlang.org/stable/dart-isolate" target="_blank" rel="noopener">dart:isolate library documentation.</a> 。</p>
+<h2 id="Typedefs"><a href="#Typedefs" class="headerlink" title="Typedefs"></a>Typedefs</h2><p>在 Dart 中，函数也是对象，就想字符和数字对象一样。 使用 <em>typedef</em> ，或者 <em>function-type alias</em> 为函数起一个别名， 别名可以用来声明字段及返回值类型。 当函数类型分配给变量时，typedef会保留类型信息。</p>
+<p>请考虑以下代码，代码中未使用 typedef ：</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SortedCollection</span> </span>&#123;</span><br><span class="line">  <span class="built_in">Function</span> compare;</span><br><span class="line"></span><br><span class="line">  SortedCollection(<span class="built_in">int</span> f(<span class="built_in">Object</span> a, <span class="built_in">Object</span> b)) &#123;</span><br><span class="line">    compare = f;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Initial, broken implementation. // broken ？</span></span><br><span class="line"><span class="built_in">int</span> sort(<span class="built_in">Object</span> a, <span class="built_in">Object</span> b) =&gt; <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> main() &#123;</span><br><span class="line">  SortedCollection coll = SortedCollection(sort);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 虽然知道 compare 是函数，</span></span><br><span class="line">  <span class="comment">// 但是函数是什么类型 ？</span></span><br><span class="line">  <span class="keyword">assert</span>(coll.compare <span class="keyword">is</span> <span class="built_in">Function</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>当把 <code>f</code> 赋值给 <code>compare</code> 的时候，类型信息丢失了。 <code>f</code> 的类型是 <code>(Object, ``Object)</code> → <code>int</code> (这里 → 代表返回值类型)， 但是 <code>compare</code> 得到的类型是 Function 。如果我们使用显式的名字并保留类型信息， 这样开发者和工具都可以使用这些信息：</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> Compare = <span class="built_in">int</span> <span class="built_in">Function</span>(<span class="built_in">Object</span> a, <span class="built_in">Object</span> b);</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SortedCollection</span> </span>&#123;</span><br><span class="line">  Compare compare;</span><br><span class="line"></span><br><span class="line">  SortedCollection(<span class="keyword">this</span>.compare);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Initial, broken implementation.</span></span><br><span class="line"><span class="built_in">int</span> sort(<span class="built_in">Object</span> a, <span class="built_in">Object</span> b) =&gt; <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> main() &#123;</span><br><span class="line">  SortedCollection coll = SortedCollection(sort);</span><br><span class="line">  <span class="keyword">assert</span>(coll.compare <span class="keyword">is</span> <span class="built_in">Function</span>);</span><br><span class="line">  <span class="keyword">assert</span>(coll.compare <span class="keyword">is</span> Compare);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong> 目前，typedefs 只能使用在函数类型上， 我们希望将来这种情况有所改变。</p>
+<p>由于 typedefs 只是别名， 他们还提供了一种方式来判断任意函数的类型。例如：</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> Compare&lt;T&gt; = <span class="built_in">int</span> <span class="built_in">Function</span>(T a, T b);</span><br><span class="line"></span><br><span class="line"><span class="built_in">int</span> sort(<span class="built_in">int</span> a, <span class="built_in">int</span> b) =&gt; a - b;</span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> main() &#123;</span><br><span class="line">  <span class="keyword">assert</span>(sort <span class="keyword">is</span> Compare&lt;<span class="built_in">int</span>&gt;); <span class="comment">// True!</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="元数据"><a href="#元数据" class="headerlink" title="元数据"></a>元数据</h2><p>使用元数据可以提供有关代码的其他信息。 元数据注释以字符 <code>@</code> 开头， 后跟对编译时常量 (如 <code>deprecated</code>) 的引用或对常量构造函数的调用。</p>
+<p>对于所有 Dart 代码有两种可用注解：<code>@deprecated</code> 和 <code>@override</code>。 关于 <code>@override</code> 的使用， 参考 <a href="https://www.dartcn.com/guides/language/language-tour#扩展类继承" target="_blank" rel="noopener">扩展类（继承）</a>。 下面是使用 <code>@deprecated</code> 注解的示例：</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Television</span> </span>&#123;</span><br><span class="line">  <span class="comment">/// <span class="markdown"><span class="emphasis">_Deprecated: Use [turnOn] instead._</span></span></span></span><br><span class="line">  <span class="meta">@deprecated</span></span><br><span class="line">  <span class="keyword">void</span> activate() &#123;</span><br><span class="line">    turnOn();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/// <span class="markdown">Turns the TV's power on.</span></span></span><br><span class="line">  <span class="keyword">void</span> turnOn() &#123;...&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>可以自定义元数据注解。 下面的示例定义了一个带有两个参数的 @todo 注解：</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">library</span> todo;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Todo</span> </span>&#123;</span><br><span class="line">  <span class="keyword">final</span> <span class="built_in">String</span> who;</span><br><span class="line">  <span class="keyword">final</span> <span class="built_in">String</span> what;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> Todo(<span class="keyword">this</span>.who, <span class="keyword">this</span>.what);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>使用 @todo 注解的示例：</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">'todo.dart'</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Todo</span>(<span class="string">'seth'</span>, <span class="string">'make this do something'</span>)</span><br><span class="line"><span class="keyword">void</span> doSomething() &#123;</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">'do something'</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>元数据可以在 library、 class、 typedef、 type parameter、 constructor、 factory、 function、 field、 parameter 或者 variable 声明之前使用，也可以在 import 或者 export 指令之前使用。 使用反射可以在运行时获取元数据信息。</p>
+<p>BohuaFu整理</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Dart/" rel="tag">#Dart</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/04/13/dart/d-20200413-0008/" rel="next" title="Dart 異常處理">
+                <i class="fa fa-chevron-left"></i> Dart 異常處理
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/04/13/dart/d-20200413-0201/" rel="prev" title="Dart 標準庫">
+                Dart 標準庫 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="https://github.com/BohuaFu/AssetsBH/blob/master/bh/avater/bh_avatar_001.jpg?raw=true"
+                alt="Bohua Fu" />
+            
+              <p class="site-author-name" itemprop="name">Bohua Fu</p>
+              <p class="site-description motion-element" itemprop="description">The stars change, but the mind remains the same.</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/%7C%7C%20archive">
+              
+                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/BohuaFu" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://bohuafu.github.io/" title="BH" target="_blank">BH</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Dart-異步支持"><span class="nav-number">1.</span> <span class="nav-text">Dart 異步支持</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#异步支持"><span class="nav-number">2.</span> <span class="nav-text">异步支持</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#处理-Future"><span class="nav-number">2.1.</span> <span class="nav-text">处理 Future</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#声明异步函数"><span class="nav-number">2.2.</span> <span class="nav-text">声明异步函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#处理-Stream"><span class="nav-number">2.3.</span> <span class="nav-text">处理 Stream</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#生成器"><span class="nav-number">3.</span> <span class="nav-text">生成器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#可调用类"><span class="nav-number">4.</span> <span class="nav-text">可调用类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Isolates"><span class="nav-number">5.</span> <span class="nav-text">Isolates</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Typedefs"><span class="nav-number">6.</span> <span class="nav-text">Typedefs</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#元数据"><span class="nav-number">7.</span> <span class="nav-text">元数据</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Bohua Fu</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
