@@ -87,7 +87,7 @@
 <meta property="og:description" content="Dart 異常處理这里将介绍 Dart 主要功能，異常處理的相關知識，假设您已经知道如何使用其他语言编程。 打开 DartPad">
 <meta property="og:locale" content="zh_TW">
 <meta property="article:published_time" content="2020-04-12T22:00:08.000Z">
-<meta property="article:modified_time" content="2020-04-14T06:32:00.293Z">
+<meta property="article:modified_time" content="2020-04-15T08:11:59.511Z">
 <meta property="article:author" content="Bohua Fu">
 <meta property="article:tag" content="Dart">
 <meta name="twitter:card" content="summary">
@@ -340,6 +340,9 @@
 <h3 id="throw"><a href="#throw" class="headerlink" title="throw"></a>throw</h3><p>下面是关于抛出或者 <em>引发</em> 异常的示例：</p>
 <figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">throw</span> FormatException(<span class="string">'Expected at least 1 section'</span>);</span><br></pre></td></tr></table></figure>
 
+<p>使用 <code>throw</code> 抛出一个异常：</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (astronauts == <span class="number">0</span>) &#123;</span><br><span class="line">  <span class="keyword">throw</span> StateError(<span class="string">'No astronauts.'</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <p>也可以抛出任意的对象：</p>
 <figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">throw</span> <span class="string">'Out of llamas!'</span>;</span><br></pre></td></tr></table></figure>
 
@@ -366,6 +369,11 @@
 <p>任何匹配的 <code>catch</code> 执行完成后，再执行 <code>finally</code> ：</p>
 <figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">  breedMoreLlamas();</span><br><span class="line">&#125; <span class="keyword">catch</span> (e) &#123;</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">'Error: <span class="subst">$e</span>'</span>); <span class="comment">// Handle the exception first.</span></span><br><span class="line">&#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">  cleanLlamaStalls(); <span class="comment">// Then clean up.</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
+<p>使用 <code>try</code> 语句以及 <code>on</code> 和 <code>catch</code>（或者两者），捕获一个异常。</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> object <span class="keyword">in</span> flybyObjects) &#123;</span><br><span class="line">    <span class="keyword">var</span> description = <span class="keyword">await</span> File(<span class="string">'<span class="subst">$object</span>.txt'</span>).readAsString();</span><br><span class="line">    <span class="built_in">print</span>(description);</span><br><span class="line">  &#125;</span><br><span class="line">&#125; <span class="keyword">on</span> IOException <span class="keyword">catch</span> (e) &#123;</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">'Could not describe object: <span class="subst">$e</span>'</span>);</span><br><span class="line">&#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">  flybyObjects.clear();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>请注意，上面的代码是异步的; 同步代码以及异步函数代码中都能够使用 <code>try</code> 捕获异常。</p>
+<p><a href="https://www.dartcn.com/guides/language/language-tour#异常" target="_blank" rel="noopener">阅读更多</a> 关于异常的内容， 包括栈跟踪（ stack traces ）， <code>rethrow</code> ，以及 Error 和 Exception的区别。</p>
 <p>更多详情，请参考 <a href="https://www.dartcn.com/guides/libraries/library-tour#exceptions" target="_blank" rel="noopener">Exceptions</a> 章节。</p>
 <p>BohuaFu整理</p>
 
