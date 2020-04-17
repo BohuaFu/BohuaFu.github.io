@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-TW">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Development," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="如何維護更新日誌(Changelog)更新日誌是什麽？更新日誌（Change Log）是一個由人工編輯，以時間為倒敘的列表。 這個列表記錄所有版本的重大變動。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="如何維護更新日誌">
+<meta property="og:url" content="https://bohuafu.github.io/2020/04/17/development/d-20200417-0002/index.html">
+<meta property="og:site_name" content="BH, 我的部落格">
+<meta property="og:description" content="如何維護更新日誌(Changelog)更新日誌是什麽？更新日誌（Change Log）是一個由人工編輯，以時間為倒敘的列表。 這個列表記錄所有版本的重大變動。">
+<meta property="og:locale" content="zh_TW">
+<meta property="article:published_time" content="2020-04-17T00:01:02.000Z">
+<meta property="article:modified_time" content="2020-04-17T04:43:01.038Z">
+<meta property="article:author" content="Bohua Fu">
+<meta property="article:tag" content="Development">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://bohuafu.github.io/2020/04/17/development/d-20200417-0002/"/>
+
+
+
+
+
+  <title>如何維護更新日誌 | BH, 我的部落格</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-TW">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">BH, 我的部落格</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">學習・分享・改變</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://bohuafu.github.io/2020/04/17/development/d-20200417-0002/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Bohua Fu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://github.com/BohuaFu/AssetsBH/blob/master/bh/avater/bh_avatar_001.jpg?raw=true">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BH, 我的部落格">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">如何維護更新日誌</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-04-17T08:01:02+08:00">
+                2020-04-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="如何維護更新日誌-Changelog"><a href="#如何維護更新日誌-Changelog" class="headerlink" title="如何維護更新日誌(Changelog)"></a>如何維護更新日誌(Changelog)</h1><h3 id="更新日誌是什麽？"><a href="#更新日誌是什麽？" class="headerlink" title="更新日誌是什麽？"></a>更新日誌是什麽？</h3><p>更新日誌（Change Log）是一個由人工編輯，以時間為倒敘的列表。 這個列表記錄所有版本的重大變動。</p>
+<a id="more"></a>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br></pre></td><td class="code"><pre><span class="line"># Changelog</span><br><span class="line">All notable changes to this project will be documented in this file.</span><br><span class="line"></span><br><span class="line">The format is based on [Keep a Changelog](https:&#x2F;&#x2F;keepachangelog.com&#x2F;en&#x2F;1.0.0&#x2F;),</span><br><span class="line">and this project adheres to [Semantic Versioning](https:&#x2F;&#x2F;semver.org&#x2F;spec&#x2F;v2.0.0.html).</span><br><span class="line"></span><br><span class="line">## [Unreleased]</span><br><span class="line"></span><br><span class="line">## [1.0.0] - 2017-06-20</span><br><span class="line">### Added</span><br><span class="line">- New visual identity by [@tylerfortune8](https:&#x2F;&#x2F;github.com&#x2F;tylerfortune8).</span><br><span class="line">- Version navigation.</span><br><span class="line">- Links to latest released version in previous versions.</span><br><span class="line">- &quot;Why keep a changelog?&quot; section.</span><br><span class="line">- &quot;Who needs a changelog?&quot; section.</span><br><span class="line">- &quot;How do I make a changelog?&quot; section.</span><br><span class="line">- &quot;Frequently Asked Questions&quot; section.</span><br><span class="line">- New &quot;Guiding Principles&quot; sub-section to &quot;How do I make a changelog?&quot;.</span><br><span class="line">- Simplified and Traditional Chinese translations from [@tianshuo](https:&#x2F;&#x2F;github.com&#x2F;tianshuo).</span><br><span class="line">- German translation from [@mpbzh](https:&#x2F;&#x2F;github.com&#x2F;mpbzh) &amp; [@Art4](https:&#x2F;&#x2F;github.com&#x2F;Art4).</span><br><span class="line">- Italian translation from [@azkidenz](https:&#x2F;&#x2F;github.com&#x2F;azkidenz).</span><br><span class="line">- Swedish translation from [@magol](https:&#x2F;&#x2F;github.com&#x2F;magol).</span><br><span class="line">- Turkish translation from [@karalamalar](https:&#x2F;&#x2F;github.com&#x2F;karalamalar).</span><br><span class="line">- French translation from [@zapashcanon](https:&#x2F;&#x2F;github.com&#x2F;zapashcanon).</span><br><span class="line">- Brazilian Portugese translation from [@Webysther](https:&#x2F;&#x2F;github.com&#x2F;Webysther).</span><br><span class="line">- Polish translation from [@amielucha](https:&#x2F;&#x2F;github.com&#x2F;amielucha) &amp; [@m-aciek](https:&#x2F;&#x2F;github.com&#x2F;m-aciek).</span><br><span class="line">- Russian translation from [@aishek](https:&#x2F;&#x2F;github.com&#x2F;aishek).</span><br><span class="line">- Czech translation from [@h4vry](https:&#x2F;&#x2F;github.com&#x2F;h4vry).</span><br><span class="line">- Slovak translation from [@jkostolansky](https:&#x2F;&#x2F;github.com&#x2F;jkostolansky).</span><br><span class="line">- Korean translation from [@pierceh89](https:&#x2F;&#x2F;github.com&#x2F;pierceh89).</span><br><span class="line">- Croatian translation from [@porx](https:&#x2F;&#x2F;github.com&#x2F;porx).</span><br><span class="line">- Persian translation from [@Hameds](https:&#x2F;&#x2F;github.com&#x2F;Hameds).</span><br><span class="line">- Ukrainian translation from [@osadchyi-s](https:&#x2F;&#x2F;github.com&#x2F;osadchyi-s).</span><br><span class="line"></span><br><span class="line">### Changed</span><br><span class="line">- Start using &quot;changelog&quot; over &quot;change log&quot; since it&#39;s the common usage.</span><br><span class="line">- Start versioning based on the current English version at 0.3.0 to help</span><br><span class="line">translation authors keep things up-to-date.</span><br><span class="line">- Rewrite &quot;What makes unicorns cry?&quot; section.</span><br><span class="line">- Rewrite &quot;Ignoring Deprecations&quot; sub-section to clarify the ideal</span><br><span class="line">  scenario.</span><br><span class="line">- Improve &quot;Commit log diffs&quot; sub-section to further argument against</span><br><span class="line">  them.</span><br><span class="line">- Merge &quot;Why can’t people just use a git log diff?&quot; with &quot;Commit log</span><br><span class="line">  diffs&quot;</span><br><span class="line">- Fix typos in Simplified Chinese and Traditional Chinese translations.</span><br><span class="line">- Fix typos in Brazilian Portuguese translation.</span><br><span class="line">- Fix typos in Turkish translation.</span><br><span class="line">- Fix typos in Czech translation.</span><br><span class="line">- Fix typos in Swedish translation.</span><br><span class="line">- Improve phrasing in French translation.</span><br><span class="line">- Fix phrasing and spelling in German translation.</span><br><span class="line"></span><br><span class="line">### Removed</span><br><span class="line">- Section about &quot;changelog&quot; vs &quot;CHANGELOG&quot;.</span><br><span class="line"></span><br><span class="line">## [0.3.0] - 2015-12-03</span><br><span class="line">### Added</span><br><span class="line">- RU translation from [@aishek](https:&#x2F;&#x2F;github.com&#x2F;aishek).</span><br><span class="line">- pt-BR translation from [@tallesl](https:&#x2F;&#x2F;github.com&#x2F;tallesl).</span><br><span class="line">- es-ES translation from [@ZeliosAriex](https:&#x2F;&#x2F;github.com&#x2F;ZeliosAriex).</span><br><span class="line"></span><br><span class="line">## [0.2.0] - 2015-10-06</span><br><span class="line">### Changed</span><br><span class="line">- Remove exclusionary mentions of &quot;open source&quot; since this project can</span><br><span class="line">benefit both &quot;open&quot; and &quot;closed&quot; source projects equally.</span><br><span class="line"></span><br><span class="line">## [0.1.0] - 2015-10-06</span><br><span class="line">### Added</span><br><span class="line">- Answer &quot;Should you ever rewrite a change log?&quot;.</span><br><span class="line"></span><br><span class="line">### Changed</span><br><span class="line">- Improve argument against commit logs.</span><br><span class="line">- Start following [SemVer](https:&#x2F;&#x2F;semver.org) properly.</span><br><span class="line"></span><br><span class="line">## [0.0.8] - 2015-02-17</span><br><span class="line">### Changed</span><br><span class="line">- Update year to match in every README example.</span><br><span class="line">- Reluctantly stop making fun of Brits only, since most of the world</span><br><span class="line">  writes dates in a strange way.</span><br><span class="line"></span><br><span class="line">### Fixed</span><br><span class="line">- Fix typos in recent README changes.</span><br><span class="line">- Update outdated unreleased diff link.</span><br><span class="line"></span><br><span class="line">## [0.0.7] - 2015-02-16</span><br><span class="line">### Added</span><br><span class="line">- Link, and make it obvious that date format is ISO 8601.</span><br><span class="line"></span><br><span class="line">### Changed</span><br><span class="line">- Clarified the section on &quot;Is there a standard change log format?&quot;.</span><br><span class="line"></span><br><span class="line">### Fixed</span><br><span class="line">- Fix Markdown links to tag comparison URL with footnote-style links.</span><br><span class="line"></span><br><span class="line">## [0.0.6] - 2014-12-12</span><br><span class="line">### Added</span><br><span class="line">- README section on &quot;yanked&quot; releases.</span><br><span class="line"></span><br><span class="line">## [0.0.5] - 2014-08-09</span><br><span class="line">### Added</span><br><span class="line">- Markdown links to version tags on release headings.</span><br><span class="line">- Unreleased section to gather unreleased changes and encourage note</span><br><span class="line">keeping prior to releases.</span><br><span class="line"></span><br><span class="line">## [0.0.4] - 2014-08-09</span><br><span class="line">### Added</span><br><span class="line">- Better explanation of the difference between the file (&quot;CHANGELOG&quot;)</span><br><span class="line">and its function &quot;the change log&quot;.</span><br><span class="line"></span><br><span class="line">### Changed</span><br><span class="line">- Refer to a &quot;change log&quot; instead of a &quot;CHANGELOG&quot; throughout the site</span><br><span class="line">to differentiate between the file and the purpose of the file — the</span><br><span class="line">logging of changes.</span><br><span class="line"></span><br><span class="line">### Removed</span><br><span class="line">- Remove empty sections from CHANGELOG, they occupy too much space and</span><br><span class="line">create too much noise in the file. People will have to assume that the</span><br><span class="line">missing sections were intentionally left out because they contained no</span><br><span class="line">notable changes.</span><br><span class="line"></span><br><span class="line">## [0.0.3] - 2014-08-09</span><br><span class="line">### Added</span><br><span class="line">- &quot;Why should I care?&quot; section mentioning The Changelog podcast.</span><br><span class="line"></span><br><span class="line">## [0.0.2] - 2014-07-10</span><br><span class="line">### Added</span><br><span class="line">- Explanation of the recommended reverse chronological release ordering.</span><br><span class="line"></span><br><span class="line">## [0.0.1] - 2014-05-31</span><br><span class="line">### Added</span><br><span class="line">- This CHANGELOG file to hopefully serve as an evolving example of a</span><br><span class="line">  standardized open source project CHANGELOG.</span><br><span class="line">- CNAME file to enable GitHub Pages custom domain</span><br><span class="line">- README now contains answers to common questions about CHANGELOGs</span><br><span class="line">- Good examples and basic guidelines, including proper date formatting.</span><br><span class="line">- Counter-examples: &quot;What makes unicorns cry?&quot;</span><br></pre></td></tr></table></figure>
+
+<h3 id="為何要提供更新日誌？"><a href="#為何要提供更新日誌？" class="headerlink" title="為何要提供更新日誌？"></a>為何要提供更新日誌？</h3><p>為了讓用戶和開發人員更好知道每一個版本有哪些區別。</p>
+<h3 id="為何我要在乎呢？"><a href="#為何我要在乎呢？" class="headerlink" title="為何我要在乎呢？"></a>為何我要在乎呢？</h3><p>因為歸根結底軟體是為人提供的。既然你不關心人，那麽為何寫軟體呢？ 多少你還是要關心你的受眾。</p>
+<p>本文檔原作者和另外兩個人的一個<a href="https://changelog.com/podcast/127" target="_blank" rel="noopener">部落格</a>向大家介紹了， 為何程式碼的管理者和開發者應該在乎更新日誌。如果你有一小時時間和很好的英文聽力本領， 不妨聽聽。</p>
+<h3 id="怎麽定義好的更新日誌"><a href="#怎麽定義好的更新日誌" class="headerlink" title="怎麽定義好的更新日誌"></a>怎麽定義好的更新日誌</h3><p>好問題！</p>
+<p>一個好的更新日誌，一定滿足：</p>
+<ul>
+<li>給人而不是機器寫的。記住，要說人話。</li>
+<li>快速跳轉到任意段。所以採用 markdown 格式</li>
+<li>一個版本對應一個章節。</li>
+<li>最新的版本在上面，最舊的在下面。</li>
+<li>所有日期採用 ‘YYYY-MM-DD’ 這種規範。（例如北京奧運會的 2008 年 8 月 8 日是 2008-08-08）這個是國際通用，任何語言 都能理解的，並且還被 <a href="https://xkcd.com/1179/" target="_blank" rel="noopener">xkcd</a> 推薦呢！</li>
+<li>標出來是否遵守<a href="https://semver.org/lang/zh-CN/" target="_blank" rel="noopener">語義化版本格式</a></li>
+<li>每一個軟體的版本必須：<ul>
+<li>標明日期（要用上面說過的規範）</li>
+<li>標明分類（採用英文）。規範如下：</li>
+<li>‘Added’ 添加的新功能</li>
+<li>‘Changed’ 功能變更</li>
+<li>‘Deprecated’ 不建議使用，未來會刪掉</li>
+<li>‘Removed’ 之前不建議使用的功能，這次真的刪掉了</li>
+<li>‘Fixed’ 修正的 bug</li>
+<li>‘Security’ 修正了安全相關的 bug</li>
+</ul>
+</li>
+</ul>
+<h3 id="怎麽盡可能減少耗費的精力？"><a href="#怎麽盡可能減少耗費的精力？" class="headerlink" title="怎麽盡可能減少耗費的精力？"></a>怎麽盡可能減少耗費的精力？</h3><p>永遠在文檔最上方提供一個 ‘Unreleased’ 未發布區域，來記錄當前的變化。 這樣做有兩大意義。</p>
+<ul>
+<li>大家可以看到接下來會有什麽變化</li>
+<li>在發布時，只要把 ‘Unreleased’ 改為當前版本號，然後再添加一個新的 ‘Unreleased’ 就行了</li>
+</ul>
+<h3 id="吐槽環節到了"><a href="#吐槽環節到了" class="headerlink" title="吐槽環節到了"></a>吐槽環節到了</h3><p>請你一定要注意：</p>
+<ul>
+<li><strong>把 git 日誌扔到更新日誌裏。</strong>看似有用，然而並沒有什麼作用。</li>
+<li><strong>不寫 ‘deprecations’ 就刪功能。</strong>不帶這樣坑隊友的。</li>
+<li><strong>採用各種不可靠的日期格式</strong> 2012 年 12 月 12 日，也就懂中文的人能看得懂了。</li>
+</ul>
+<p>如果你還有要吐槽的，歡迎留 <a href="https://github.com/olivierlacan/keep-a-changelog/issues" target="_blank" rel="noopener">issue</a> 或者直接 PR</p>
+<h3 id="世界上不是有標準的更新日誌格式嗎？"><a href="#世界上不是有標準的更新日誌格式嗎？" class="headerlink" title="世界上不是有標準的更新日誌格式嗎？"></a>世界上不是有標準的更新日誌格式嗎？</h3><p>貌似 GNU 或者 GNU NEWS 還是提過些規範的，事實是它們太過簡陋了。 開發有那麽多中情況，採用那樣的規範，確實是不太合適的。</p>
+<p>這個項目提供的<a href="https://github.com/olivierlacan/keep-a-changelog/blob/master/CHANGELOG.md" target="_blank" rel="noopener">規範</a>是作者本人希望能夠成為世界規範的。 作者不認為當前的標準足夠好，而且作為一個社區，我們是有能力提供更棒的規範。 如果你對這個規範有不滿的地方，不要忘記還可以<a href="https://github.com/olivierlacan/keep-a-changelog/issues" target="_blank" rel="noopener">吐槽</a>呢。</p>
+<h3 id="更新日誌文件名應該叫什麽？"><a href="#更新日誌文件名應該叫什麽？" class="headerlink" title="更新日誌文件名應該叫什麽？"></a>更新日誌文件名應該叫什麽？</h3><p>我們的案例中給的名字就是最好的規範：<code>CHANGELOG.md</code>，注意大小寫。</p>
+<p>像 <code>HISTORY.txt</code>, <code>HISTORY.md</code>, <code>History.md</code>, <code>NEWS.txt</code>, <code>NEWS.md</code>, <code>News.txt</code>, <code>RELEASES.txt</code>, <code>RELEASE.md</code>, <code>releases.md</code> 這麽 多文件名就太不統一了。</p>
+<p>只會讓大家更難找到。</p>
+<h3 id="為何不直接記錄-git-log"><a href="#為何不直接記錄-git-log" class="headerlink" title="為何不直接記錄 git log?"></a>為何不直接記錄 <code>git log</code>?</h3><p>因為 git 日誌一定是亂糟糟的。哪怕一個最理想的由完美的程序員開發的提交的，哪怕一個 從不忘記每次提交全部文件，不寫錯別字，不忘記重構每一個部分——也無法保證 git 日誌完美無瑕。 況且 git 日誌的核心在於記錄代碼的演化，而更新日誌則是記錄最重要的變更。</p>
+<p>就像註解之於程式碼，更新日誌之於 git 日誌。前者解釋<em>為什麽</em>，而後者說明<em>發生了什麽</em>。</p>
+<h3 id="更新日誌能機器識別嗎？"><a href="#更新日誌能機器識別嗎？" class="headerlink" title="更新日誌能機器識別嗎？"></a>更新日誌能機器識別嗎？</h3><p>非常困難，因為有各種不同的文件格式和其他規範。</p>
+<p><a href="https://github.com/tech-angels/vandamme" target="_blank" rel="noopener">Vandamme</a> 是一支 Ruby 程式（由 <a href="https://gemnasium.com/" target="_blank" rel="noopener">Gemnasium</a> 團隊制作），可以解析 很多種（但絕對不是全部）開源程式庫的更新日誌。</p>
+<h3 id="到底是-CHANGELOG-還是更新日誌"><a href="#到底是-CHANGELOG-還是更新日誌" class="headerlink" title="到底是 CHANGELOG 還是更新日誌"></a>到底是 CHANGELOG 還是更新日誌</h3><p>CHANGELOG 是文件名，更新日誌是常用說法。CHANGELOG 採用大寫是有歷史根源的。就像很多類似的文件 <a href="https://github.com/olivierlacan/keep-a-changelog/blob/master/README.md" target="_blank" rel="noopener"><code>README</code></a>，<a href="https://github.com/olivierlacan/keep-a-changelog/blob/master/LICENSE" target="_blank" rel="noopener"><code>LICENSE</code></a>，還有 <a href="https://github.com/olivierlacan/keep-a-changelog/blob/master/CONTRIBUTING.md" target="_blank" rel="noopener"><code>CONTRIBUTING</code></a>。</p>
+<p>採用大寫可以更加顯著，畢竟這是項目很重要的 metadata。就像<a href="https://shields.io/" target="_blank" rel="noopener">開源徽章</a>。</p>
+<h3 id="那些後來撤下的版本怎麽辦？"><a href="#那些後來撤下的版本怎麽辦？" class="headerlink" title="那些後來撤下的版本怎麽辦？"></a>那些後來撤下的版本怎麽辦？</h3><p>因為各種安全/重大 bug 原因被撤下的版本被標記 ‘YANKED’。這些版本一般不出現在更新日誌裏，但作者建議他們出現。 顯示方式應該是：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">## 0.0.5 - 2014-12-13 [YANKED]</span><br></pre></td></tr></table></figure>
+
+<p><code>[YANKED]</code> 採用大寫更加顯著，因為這個訊息很重要。而採用方括號則容易被程式解析。</p>
+<h3 id="是否可以重寫更新日誌"><a href="#是否可以重寫更新日誌" class="headerlink" title="是否可以重寫更新日誌"></a>是否可以重寫更新日誌</h3><p>當然。哪怕已經上線了，也可以重新更新更新日誌。有許多開源項目更新日誌不夠新，所以作者就會幫忙更新。</p>
+<p>另外，很有可能你忘記記錄一個重大功能更新。所以這時候應該去重寫更新日誌。</p>
+<h3 id="如何貢獻？"><a href="#如何貢獻？" class="headerlink" title="如何貢獻？"></a>如何貢獻？</h3><p>本文檔並不是<strong>真理</strong>。這只是原作者的個人建議，並且包括許多收集的例子。 哪怕<a href="https://github.com/olivierlacan/keep-a-changelog" target="_blank" rel="noopener">本開源庫</a>提供一個<a href="https://github.com/olivierlacan/keep-a-changelog/blob/master/CHANGELOG.md" target="_blank" rel="noopener">更新日誌案例</a>，我刻意沒有提供一個 過於苛刻的規則列表（不像<a href="https://semver.org/lang/zh-CN/" target="_blank" rel="noopener">語義化版本格式</a>）。</p>
+<p>這是因為我希望通過社區達到統一觀點，我認為中間討論的過程與結果一樣重要。</p>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ul>
+<li><p><a href="https://keepachangelog.com/zh-TW/0.3.0/" target="_blank" rel="noopener">https://keepachangelog.com/zh-TW/0.3.0/</a></p>
+</li>
+<li><p><a href="https://keepachangelog.com/en/1.0.0/" target="_blank" rel="noopener">keep a changelog</a></p>
+</li>
+</ul>
+<p>BohuaFu收納</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Development/" rel="tag">#Development</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/04/17/development/d-20200417-0001/" rel="next" title="Semantic Versioning 2.0.0-rc.1">
+                <i class="fa fa-chevron-left"></i> Semantic Versioning 2.0.0-rc.1
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/04/18/quotes/d-20200418-0001/" rel="prev" title="團隊合作">
+                團隊合作 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="https://github.com/BohuaFu/AssetsBH/blob/master/bh/avater/bh_avatar_001.jpg?raw=true"
+                alt="Bohua Fu" />
+            
+              <p class="site-author-name" itemprop="name">Bohua Fu</p>
+              <p class="site-description motion-element" itemprop="description">The stars change, but the mind remains the same.</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/%7C%7C%20archive">
+              
+                  <span class="site-state-item-count">27</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/BohuaFu" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://bohuafu.github.io/" title="BH" target="_blank">BH</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#如何維護更新日誌-Changelog"><span class="nav-number">1.</span> <span class="nav-text">如何維護更新日誌(Changelog)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#更新日誌是什麽？"><span class="nav-number">1.0.1.</span> <span class="nav-text">更新日誌是什麽？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#為何要提供更新日誌？"><span class="nav-number">1.0.2.</span> <span class="nav-text">為何要提供更新日誌？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#為何我要在乎呢？"><span class="nav-number">1.0.3.</span> <span class="nav-text">為何我要在乎呢？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#怎麽定義好的更新日誌"><span class="nav-number">1.0.4.</span> <span class="nav-text">怎麽定義好的更新日誌</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#怎麽盡可能減少耗費的精力？"><span class="nav-number">1.0.5.</span> <span class="nav-text">怎麽盡可能減少耗費的精力？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#吐槽環節到了"><span class="nav-number">1.0.6.</span> <span class="nav-text">吐槽環節到了</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#世界上不是有標準的更新日誌格式嗎？"><span class="nav-number">1.0.7.</span> <span class="nav-text">世界上不是有標準的更新日誌格式嗎？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#更新日誌文件名應該叫什麽？"><span class="nav-number">1.0.8.</span> <span class="nav-text">更新日誌文件名應該叫什麽？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#為何不直接記錄-git-log"><span class="nav-number">1.0.9.</span> <span class="nav-text">為何不直接記錄 git log?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#更新日誌能機器識別嗎？"><span class="nav-number">1.0.10.</span> <span class="nav-text">更新日誌能機器識別嗎？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#到底是-CHANGELOG-還是更新日誌"><span class="nav-number">1.0.11.</span> <span class="nav-text">到底是 CHANGELOG 還是更新日誌</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#那些後來撤下的版本怎麽辦？"><span class="nav-number">1.0.12.</span> <span class="nav-text">那些後來撤下的版本怎麽辦？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#是否可以重寫更新日誌"><span class="nav-number">1.0.13.</span> <span class="nav-text">是否可以重寫更新日誌</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何貢獻？"><span class="nav-number">1.0.14.</span> <span class="nav-text">如何貢獻？</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-number">1.1.</span> <span class="nav-text">Reference</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Bohua Fu</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
