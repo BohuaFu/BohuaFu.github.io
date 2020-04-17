@@ -79,20 +79,24 @@
 
 
 
-<meta name="description" content="前端開發技術樹這夠小白可以學習好久了，HaHa。  BohuaFu收納">
+<meta name="description" content="什麼是 MPA？MPA （Multi-Page Application） 指的是一般傳統 Web Front-End 開發方式。一個畫面，一個 HTML 檔案。舉例來說： 1234567&lt;ul&gt;  &lt;li&gt;&lt;a href&#x3D;&quot;index.html&quot;&gt;首頁&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;  &lt;li&amp;g">
 <meta property="og:type" content="article">
-<meta property="og:title" content="前端開發技術樹">
+<meta property="og:title" content="MPA vs SPA">
 <meta property="og:url" content="https://bohuafu.github.io/2020/04/19/frontend/d-20200419-0002/index.html">
 <meta property="og:site_name" content="BH, 我的部落格">
-<meta property="og:description" content="前端開發技術樹這夠小白可以學習好久了，HaHa。  BohuaFu收納">
+<meta property="og:description" content="什麼是 MPA？MPA （Multi-Page Application） 指的是一般傳統 Web Front-End 開發方式。一個畫面，一個 HTML 檔案。舉例來說： 1234567&lt;ul&gt;  &lt;li&gt;&lt;a href&#x3D;&quot;index.html&quot;&gt;首頁&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;  &lt;li&amp;g">
 <meta property="og:locale" content="zh_TW">
-<meta property="og:image" content="https://github.com/BohuaFu/AssetsBH/blob/master/frontend/frontend_00001.png?raw=true">
-<meta property="article:published_time" content="2020-04-19T00:01:01.000Z">
-<meta property="article:modified_time" content="2020-04-17T06:28:05.453Z">
+<meta property="og:image" content="https://github.com/BohuaFu/AssetsBH/blob/master/frontend/MPA_00001.png?raw=true">
+<meta property="og:image" content="https://github.com/BohuaFu/AssetsBH/blob/master/frontend/SPA_00001.png?raw=true">
+<meta property="og:image" content="https://github.com/BohuaFu/AssetsBH/blob/master/frontend/SPA_00002.gif?raw=true">
+<meta property="og:image" content="https://github.com/BohuaFu/AssetsBH/blob/master/frontend/SPA_00003.png?raw=true">
+<meta property="og:image" content="https://github.com/BohuaFu/AssetsBH/blob/master/frontend/SPA_00004.jpeg?raw=true">
+<meta property="article:published_time" content="2020-04-19T00:01:02.000Z">
+<meta property="article:modified_time" content="2020-04-17T07:06:16.906Z">
 <meta property="article:author" content="Bohua Fu">
 <meta property="article:tag" content="Frontend">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://github.com/BohuaFu/AssetsBH/blob/master/frontend/frontend_00001.png?raw=true">
+<meta name="twitter:image" content="https://github.com/BohuaFu/AssetsBH/blob/master/frontend/MPA_00001.png?raw=true">
 
 
 
@@ -128,7 +132,7 @@
 
 
 
-  <title>前端開發技術樹 | BH, 我的部落格</title>
+  <title>MPA vs SPA | BH, 我的部落格</title>
   
 
 
@@ -282,7 +286,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">前端開發技術樹</h1>
+          <h1 class="post-title" itemprop="name headline">MPA vs SPA</h1>
         
 
         <div class="post-meta">
@@ -294,7 +298,7 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-04-19T08:01:01+08:00">
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-04-19T08:01:02+08:00">
                 2020-04-19
               </time>
             
@@ -332,8 +336,49 @@
       
 
       
-        <h1 id="前端開發技術樹"><a href="#前端開發技術樹" class="headerlink" title="前端開發技術樹"></a>前端開發技術樹</h1><p>這夠小白可以學習好久了，HaHa。</p>
-<p><img src="https://github.com/BohuaFu/AssetsBH/blob/master/frontend/frontend_00001.png?raw=true" alt=""></p>
+        <h1 id="什麼是-MPA？"><a href="#什麼是-MPA？" class="headerlink" title="什麼是 MPA？"></a>什麼是 MPA？</h1><p><strong>MPA</strong> <em>（<strong>Multi-Page Application</strong>）</em> 指的是一般傳統 Web Front-End 開發方式。一個畫面，一個 HTML 檔案。舉例來說：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;ul&gt;</span><br><span class="line">  &lt;li&gt;&lt;a href&#x3D;&quot;index.html&quot;&gt;首頁&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;</span><br><span class="line">  &lt;li&gt;&lt;a href&#x3D;&quot;pages&#x2F;about.html&quot;&gt;關於我們&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;</span><br><span class="line">  &lt;li&gt;&lt;a href&#x3D;&quot;pages&#x2F;news.html&quot;&gt;最新消息&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;</span><br><span class="line">  &lt;li&gt;&lt;a href&#x3D;&quot;pages&#x2F;products.html&quot;&gt;所有產品&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;</span><br><span class="line">  &lt;li&gt;&lt;a href&#x3D;&quot;pages&#x2F;contact.html&quot;&gt;聯絡我們&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;</span><br><span class="line">&lt;&#x2F;ul&gt;</span><br></pre></td></tr></table></figure>
+
+<p>假設使用者點擊「首頁」這個連結時，瀏覽器會發出一個需求到伺服器說：我需要 index.html 這個檔案的資料，然後伺服器再把 index.html 這個檔案的資料回傳給瀏覽器顯示。</p>
+<a id="more"></a>
+
+<p>或者像是使用者填完表單按下送出，瀏覽器將資料送伺服器處理完後，伺服器再把接下來要呈現的 HTML 檔案回傳給瀏覽器。像是：</p>
+<p><img src="https://github.com/BohuaFu/AssetsBH/blob/master/frontend/MPA_00001.png?raw=true" alt=""></p>
+<p>上述看似再正常不過的流程，其實有個缺點：<strong>頁面重整</strong>。</p>
+<p>因為每個頁面都不是只有單純的 HTML 而已，還有其所需要的 CSS 與 JavaScript 檔，這些檔案都會在頁面重整的時候需要多花不少時間去下載，造成比較差的<strong>使用者體驗</strong>。</p>
+<h1 id="什麼是-SPA？"><a href="#什麼是-SPA？" class="headerlink" title="什麼是 SPA？"></a>什麼是 SPA？</h1><p><strong>SPA</strong> <em>（<strong>Single-Page Application</strong>）</em> 顧名思義，就是整個網站實際上其實只有一個頁面。</p>
+<p>為了解決上述提到的<strong>頁面重整</strong>的問題，我們可以使用 <strong>AJAX</strong> <em>（<strong>Asynchronous JavaScript And XML</strong>，非同步的</em> <em>JavaScript</em> <em>與</em> <em>XML**）</em> 的技術來處理，令其在送出資料且收到伺服器的回覆後，只針對需要更新的頁面元素來更新。如下圖所示：</p>
+<p><img src="https://github.com/BohuaFu/AssetsBH/blob/master/frontend/SPA_00001.png?raw=true" alt=""></p>
+<p><img src="https://github.com/BohuaFu/AssetsBH/blob/master/frontend/SPA_00002.gif?raw=true" alt=""></p>
+<p><img src="https://github.com/BohuaFu/AssetsBH/blob/master/frontend/SPA_00003.png?raw=true" alt=""></p>
+<p><img src="https://github.com/BohuaFu/AssetsBH/blob/master/frontend/SPA_00004.jpeg?raw=true" alt=""></p>
+<p>除了透過 AJAX 的方式來解決頁面重整的問題外，SPA 也有令<a href="https://ithelp.ithome.com.tw/articles/10187675" target="_blank" rel="noopener">前後端分離</a>、提供使用者更偏向 Desktop/Mobile App 的使用者體驗等好處。</p>
+<blockquote>
+<p>不過如果 SPA 這麼好？那大家為什麼都不用 SPA 的方式來開發就好？</p>
+</blockquote>
+<h1 id="MPA-vs-SPA"><a href="#MPA-vs-SPA" class="headerlink" title="MPA vs SPA"></a>MPA vs SPA</h1><p>黃金無足色，白璧有微瑕。求人不求備，妾願老君家。 ─ 宋‧戴復古《寄興》</p>
+<p>世界上沒有什麼事情是完美無缺的，SPA 亦然之。所以，我們來比較一下 MPA 與 SPA：</p>
+<h2 id="MPA-優點："><a href="#MPA-優點：" class="headerlink" title="MPA 優點："></a>MPA 優點：</h2><ol>
+<li>SEO 較好</li>
+<li>支援 no-script 模式</li>
+</ol>
+<h2 id="MPA-缺點："><a href="#MPA-缺點：" class="headerlink" title="MPA 缺點："></a>MPA 缺點：</h2><ol>
+<li>使用者體驗較差</li>
+<li>前後端相依性較高</li>
+</ol>
+<h2 id="SPA-優點："><a href="#SPA-優點：" class="headerlink" title="SPA 優點："></a>SPA 優點：</h2><ol>
+<li>前後端分離</li>
+<li>使用者體驗較佳</li>
+</ol>
+<h2 id="SPA-缺點："><a href="#SPA-缺點：" class="headerlink" title="SPA 缺點："></a>SPA 缺點：</h2><ol>
+<li>初次進入頁面時所需時間較久</li>
+<li>SEO 較差</li>
+<li>不支援 no-script 模式</li>
+</ol>
+<p>考慮到以上優缺點， MPA 跟 SPA 都有其各自較適合使用的情境。</p>
+<p>舉例來說：比較偏向行銷類的網站如官網、活動網站等，或許會比較推薦使用傳統 MPA 的開發方式；比較偏向內部使用的系統如出勤系統、管理系統等，或許就會比較推薦使用 SPA 的開發方式。</p>
+<p>當然也可以行銷類網站用 SPA，內部系統用 MPA，一切都看客戶、團隊或是公司怎麼選擇而已。</p>
+<p>另外，除了上述這些之外，其實也還有其他層面的優缺點，不過在此我只列出上述這幾項來比較，其他就不再贅述。</p>
 <p>BohuaFu收納</p>
 
       
@@ -365,8 +410,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2020/04/18/quotes/d-20200418-0005/" rel="next" title="學習思考">
-                <i class="fa fa-chevron-left"></i> 學習思考
+              <a href="/2020/04/19/frontend/d-20200419-0001/" rel="next" title="前端開發技術樹">
+                <i class="fa fa-chevron-left"></i> 前端開發技術樹
               </a>
             
           </div>
@@ -375,7 +420,7 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2020/04/19/essay/d-20200419-0001/" rel="prev" title="Teach Yourself C++ in 21 Days">
+              <a href="/2020/04/20/essay/d-20200420-0001/" rel="prev" title="Teach Yourself C++ in 21 Days">
                 Teach Yourself C++ in 21 Days <i class="fa fa-chevron-right"></i>
               </a>
             
@@ -458,7 +503,7 @@
               
                 <a href="/archives/%7C%7C%20archive">
               
-                  <span class="site-state-item-count">30</span>
+                  <span class="site-state-item-count">31</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -528,7 +573,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前端開發技術樹"><span class="nav-number">1.</span> <span class="nav-text">前端開發技術樹</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#什麼是-MPA？"><span class="nav-number">1.</span> <span class="nav-text">什麼是 MPA？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#什麼是-SPA？"><span class="nav-number">2.</span> <span class="nav-text">什麼是 SPA？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#MPA-vs-SPA"><span class="nav-number">3.</span> <span class="nav-text">MPA vs SPA</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#MPA-優點："><span class="nav-number">3.1.</span> <span class="nav-text">MPA 優點：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MPA-缺點："><span class="nav-number">3.2.</span> <span class="nav-text">MPA 缺點：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SPA-優點："><span class="nav-number">3.3.</span> <span class="nav-text">SPA 優點：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SPA-缺點："><span class="nav-number">3.4.</span> <span class="nav-text">SPA 缺點：</span></a></li></ol></li></ol></div>
             
 
           </div>
