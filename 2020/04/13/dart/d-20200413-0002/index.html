@@ -87,7 +87,7 @@
 <meta property="og:description" content="概述定義 Dart is a client-optimized language for fast apps on any platform.  Dart（[KK] 英語發音：&#x2F;dɑrt&#x2F;, [DJ] 英語發音：&#x2F;dɑ:t&#x2F;）是一種適用於全球資訊網的開放原始碼程式語言，由Google主導開發，於2011年10月公開。它的開發團隊由Google Chrome瀏覽器V8引擎團隊的領導者拉爾斯·巴克主持">
 <meta property="og:locale" content="zh_TW">
 <meta property="article:published_time" content="2020-04-12T22:00:02.000Z">
-<meta property="article:modified_time" content="2020-04-13T16:55:11.614Z">
+<meta property="article:modified_time" content="2020-04-17T07:30:49.628Z">
 <meta property="article:author" content="Bohua Fu">
 <meta property="article:tag" content="Dart">
 <meta name="twitter:card" content="summary">
@@ -381,8 +381,14 @@
 <li>Target the web with complete, mature, fast <a href="https://dart.dev/platforms#dart-web-javascript" target="_blank" rel="noopener">compilers for JavaScript</a></li>
 <li>Run <a href="https://dart.dev/tutorials/server/httpserver" target="_blank" rel="noopener">backend code</a> supporting your app, written using a single programming language</li>
 </ul>
-<h3 id="為什麼使用Dart"><a href="#為什麼使用Dart" class="headerlink" title="為什麼使用Dart?"></a>為什麼使用Dart?</h3><p>Google及全球的其他开发者，使用 Dart 开发了一系列高质量、 关键的 iOS、Android 和 web 应用。 Dart 非常适合移动和 web 应用的开发。</p>
-<p>Dart 是免费的并开源于 <a href="https://github.com/dart-lang" target="_blank" rel="noopener">GitHub。</a></p>
+<h3 id="為什麼使用Dart"><a href="#為什麼使用Dart" class="headerlink" title="為什麼使用Dart?"></a>為什麼使用Dart?</h3><p>Google及全球的其他开发者，使用 Dart 开发了一系列高质量、 关键的 iOS、Android 和 web 应用。 Dart 非常适合移动和 web 应用的开发。Dart 是免费的并开源于 <a href="https://github.com/dart-lang" target="_blank" rel="noopener">GitHub。</a></p>
+<ul>
+<li>Dart可基于AOT（Ahead Of Time）编译，即编译成平台的本地代码，运行性能高。</li>
+<li>Dart也可基于JIT（Just In Time）编译，编译快速，可热加载，使开发周期加倍提升（Flutter亚秒级有状态热重载）。</li>
+<li>Dart可以更轻松地创建以60fps运行的流畅动画和转场。Dart在没有锁的情况下进行对象分配和垃圾回收。</li>
+<li>Dart语法结合Java与JavaScript语法特点，几乎没有令人不适怪异语法，使Java程序员倍感亲切，快速上手。</li>
+</ul>
+<p>通常来说一门语言要么使用AOT编译，编译慢，开发效率低，或者使用JIT编译，在运行时编译，虽然可以热重载，但是执行效率低，而Dart在这两种之间做出了完美平衡，当开发时使用JIT编译，调试快，所见即所得，开发效率高，当发布时，使用AOT编译，编译成目标平台的本地代码，执行效率高。</p>
 <h4 id="高效"><a href="#高效" class="headerlink" title="高效"></a>高效</h4><p>Dart 语法清晰简洁，工具简单而强大。 输入检测可帮助您尽早识别细微错误。 Dart 拥有久经考验的 <a href="https://www.dartcn.com/guides/libraries/library-tour" target="_blank" rel="noopener">核心库（core libraries）</a> 和一个已经拥有数以千计的 packages <a href="https://pub.dartlang.org/" target="_blank" rel="noopener">生态系统</a>。</p>
 <h4 id="快速"><a href="#快速" class="headerlink" title="快速"></a>快速</h4><p>Dart 提供提前编译优化，以在移动设备和 web 上实现可预测的高性能和快速启动。</p>
 <h4 id="可移植"><a href="#可移植" class="headerlink" title="可移植"></a>可移植</h4><p>Dart 可以编译成 ARM 和 x86 代码，因此 Dart 移动应用程序可以在 iOS，Android 及 更高版本上实现本地运行。 对于 web 应用程序，Dart 可以转换为 JavaScript。</p>
