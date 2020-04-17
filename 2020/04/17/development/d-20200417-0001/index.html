@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-TW">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Development," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Semantic Versioning 2.0.0-rc.1In the world of software management there exists a dread place called “dependency hell.” The bigger your system grows and the more packages you integrate into your softwa">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Semantic Versioning 2.0.0-rc.1">
+<meta property="og:url" content="https://bohuafu.github.io/2020/04/17/development/d-20200417-0001/index.html">
+<meta property="og:site_name" content="BH, 我的部落格">
+<meta property="og:description" content="Semantic Versioning 2.0.0-rc.1In the world of software management there exists a dread place called “dependency hell.” The bigger your system grows and the more packages you integrate into your softwa">
+<meta property="og:locale" content="zh_TW">
+<meta property="article:published_time" content="2020-04-17T04:07:20.842Z">
+<meta property="article:modified_time" content="2020-04-17T04:09:52.708Z">
+<meta property="article:author" content="Bohua Fu">
+<meta property="article:tag" content="Development">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://bohuafu.github.io/2020/04/17/development/d-20200417-0001/"/>
+
+
+
+
+
+  <title>Semantic Versioning 2.0.0-rc.1 | BH, 我的部落格</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-TW">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">BH, 我的部落格</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">學習・分享・改變</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://bohuafu.github.io/2020/04/17/development/d-20200417-0001/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Bohua Fu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://github.com/BohuaFu/AssetsBH/blob/master/bh/avater/bh_avatar_001.jpg?raw=true">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BH, 我的部落格">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Semantic Versioning 2.0.0-rc.1</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-04-17T12:07:20+08:00">
+                2020-04-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="Semantic-Versioning-2-0-0-rc-1"><a href="#Semantic-Versioning-2-0-0-rc-1" class="headerlink" title="Semantic Versioning 2.0.0-rc.1"></a>Semantic Versioning 2.0.0-rc.1</h1><p>In the world of software management there exists a dread place called “dependency hell.” The bigger your system grows and the more packages you integrate into your software, the more likely you are to find yourself, one day, in this pit of despair.</p>
+<p>In systems with many dependencies, releasing new package versions can quickly become a nightmare. If the dependency specifications are too tight, you are in danger of version lock (the inability to upgrade a package without having to release new versions of every dependent package). If dependencies are specified too loosely, you will inevitably be bitten by version promiscuity (assuming compatibility with more future versions than is reasonable). Dependency hell is where you are when version lock and/or version promiscuity prevent you from easily and safely moving your project forward.</p>
+<p>As a solution to this problem, I propose a simple set of rules and requirements that dictate how version numbers are assigned and incremented. For this system to work, you first need to declare a public API. This may consist of documentation or be enforced by the code itself. Regardless, it is important that this API be clear and precise. Once you identify your public API, you communicate changes to it with specific increments to your version number. Consider a version format of X.Y.Z (Major.Minor.Patch). Bug fixes not affecting the API increment the patch version, backwards compatible API additions/changes increment the minor version, and backwards incompatible API changes increment the major version.</p>
+<p>I call this system “Semantic Versioning.” Under this scheme, version numbers and the way they change convey meaning about the underlying code and what has been modified from one version to the next.</p>
+<h2 id="Semantic-Versioning-Specification-SemVer"><a href="#Semantic-Versioning-Specification-SemVer" class="headerlink" title="Semantic Versioning Specification (SemVer)"></a>Semantic Versioning Specification (SemVer)</h2><p>The key words “MUST”, “MUST NOT”, “REQUIRED”, “SHALL”, “SHALL NOT”, “SHOULD”, “SHOULD NOT”, “RECOMMENDED”, “MAY”, and “OPTIONAL” in this document are to be interpreted as described in RFC 2119.</p>
+<ol>
+<li>Software using Semantic Versioning MUST declare a public API. This API could be declared in the code itself or exist strictly in documentation. However it is done, it should be precise and comprehensive.</li>
+<li>A normal version number MUST take the form X.Y.Z where X, Y, and Z are non-negative integers. X is the major version, Y is the minor version, and Z is the patch version. Each element MUST increase numerically by increments of one. For instance: 1.9.0 -&gt; 1.10.0 -&gt; 1.11.0.</li>
+<li>When a major version number is incremented, the minor version and patch version MUST be reset to zero. When a minor version number is incremented, the patch version MUST be reset to zero. For instance: 1.1.3 -&gt; 2.0.0 and 2.1.7 -&gt; 2.2.0.</li>
+<li>Once a versioned package has been released, the contents of that version MUST NOT be modified. Any modifications must be released as a new version.</li>
+<li>Major version zero (0.y.z) is for initial development. Anything may change at any time. The public API should not be considered stable.</li>
+<li>Version 1.0.0 defines the public API. The way in which the version number is incremented after this release is dependent on this public API and how it changes.</li>
+<li>Patch version Z (x.y.Z | x &gt; 0) MUST be incremented if only backwards compatible bug fixes are introduced. A bug fix is defined as an internal change that fixes incorrect behavior.</li>
+<li>Minor version Y (x.Y.z | x &gt; 0) MUST be incremented if new, backwards compatible functionality is introduced to the public API. It MUST be incremented if any public API functionality is marked as deprecated. It MAY be incremented if substantial new functionality or improvements are introduced within the private code. It MAY include patch level changes. Patch version MUST be reset to 0 when minor version is incremented.</li>
+<li>Major version X (X.y.z | X &gt; 0) MUST be incremented if any backwards incompatible changes are introduced to the public API. It MAY include minor and patch level changes. Patch and minor version MUST be reset to 0 when major version is incremented.</li>
+<li>A pre-release version MAY be denoted by appending a dash and a series of dot separated identifiers immediately following the patch version. Identifiers MUST be comprised of only ASCII alphanumerics and dash [0-9A-Za-z-]. Pre-release versions satisfy but have a lower precedence than the associated normal version. Examples: 1.0.0-alpha, 1.0.0-alpha.1, 1.0.0-0.3.7, 1.0.0-x.7.z.92.</li>
+<li>A build version MAY be denoted by appending a plus sign and a series of dot separated identifiers immediately following the patch version or pre-release version. Identifiers MUST be comprised of only ASCII alphanumerics and dash [0-9A-Za-z-]. Build versions satisfy and have a higher precedence than the associated normal version. Examples: 1.0.0+build.1, 1.3.7+build.11.e0f985a.</li>
+<li>Precedence MUST be calculated by separating the version into major, minor, patch, pre-release, and build identifiers in that order. Major, minor, and patch versions are always compared numerically. Pre-release and build version precedence MUST be determined by comparing each dot separated identifier as follows: identifiers consisting of only digits are compared numerically and identifiers with letters or dashes are compared lexically in ASCII sort order. Numeric identifiers always have lower precedence than non-numeric identifiers. Example: 1.0.0-alpha &lt; 1.0.0-alpha.1 &lt; 1.0.0-beta.2 &lt; 1.0.0-beta.11 &lt; 1.0.0-rc.1 &lt; 1.0.0-rc.1+build.1 &lt; 1.0.0 &lt; 1.0.0+0.3.7 &lt; 1.3.7+build &lt; 1.3.7+build.2.b8f12d7 &lt; 1.3.7+build.11.e0f985a.</li>
+</ol>
+<h2 id="Why-Use-Semantic-Versioning"><a href="#Why-Use-Semantic-Versioning" class="headerlink" title="Why Use Semantic Versioning?"></a>Why Use Semantic Versioning?</h2><p>This is not a new or revolutionary idea. In fact, you probably do something close to this already. The problem is that “close” isn’t good enough. Without compliance to some sort of formal specification, version numbers are essentially useless for dependency management. By giving a name and clear definition to the above ideas, it becomes easy to communicate your intentions to the users of your software. Once these intentions are clear, flexible (but not too flexible) dependency specifications can finally be made.</p>
+<p>A simple example will demonstrate how Semantic Versioning can make dependency hell a thing of the past. Consider a library called “Firetruck.” It requires a Semantically Versioned package named “Ladder.” At the time that Firetruck is created, Ladder is at version 3.1.0. Since Firetruck uses some functionality that was first introduced in 3.1.0, you can safely specify the Ladder dependency as greater than or equal to 3.1.0 but less than 4.0.0. Now, when Ladder version 3.1.1 and 3.2.0 become available, you can release them to your package management system and know that they will be compatible with existing dependent software.</p>
+<p>As a responsible developer you will, of course, want to verify that any package upgrades function as advertised. The real world is a messy place; there’s nothing we can do about that but be vigilant. What you can do is let Semantic Versioning provide you with a sane way to release and upgrade packages without having to roll new versions of dependent packages, saving you time and hassle.</p>
+<p>If all of this sounds desirable, all you need to do to start using Semantic Versioning is to declare that you are doing so and then follow the rules. Link to this website from your README so others know the rules and can benefit from them.</p>
+<h2 id="FAQ"><a href="#FAQ" class="headerlink" title="FAQ"></a>FAQ</h2><h3 id="How-should-I-deal-with-revisions-in-the-0-y-z-initial-development-phase"><a href="#How-should-I-deal-with-revisions-in-the-0-y-z-initial-development-phase" class="headerlink" title="How should I deal with revisions in the 0.y.z initial development phase?"></a>How should I deal with revisions in the 0.y.z initial development phase?</h3><p>The simplest thing to do is start your initial development release at 0.1.0 and then increment the minor version for each subsequent release.</p>
+<h3 id="How-do-I-know-when-to-release-1-0-0"><a href="#How-do-I-know-when-to-release-1-0-0" class="headerlink" title="How do I know when to release 1.0.0?"></a>How do I know when to release 1.0.0?</h3><p>If your software is being used in production, it should probably already be 1.0.0. If you have a stable API on which users have come to depend, you should be 1.0.0. If you’re worrying a lot about backwards compatibility, you should probably already be 1.0.0.</p>
+<h3 id="Doesn’t-this-discourage-rapid-development-and-fast-iteration"><a href="#Doesn’t-this-discourage-rapid-development-and-fast-iteration" class="headerlink" title="Doesn’t this discourage rapid development and fast iteration?"></a>Doesn’t this discourage rapid development and fast iteration?</h3><p>Major version zero is all about rapid development. If you’re changing the API every day you should either still be in version 0.x.x or on a separate development branch working on the next major version.</p>
+<h3 id="If-even-the-tiniest-backwards-incompatible-changes-to-the-public-API-require-a-major-version-bump-won’t-I-end-up-at-version-42-0-0-very-rapidly"><a href="#If-even-the-tiniest-backwards-incompatible-changes-to-the-public-API-require-a-major-version-bump-won’t-I-end-up-at-version-42-0-0-very-rapidly" class="headerlink" title="If even the tiniest backwards incompatible changes to the public API require a major version bump, won’t I end up at version 42.0.0 very rapidly?"></a>If even the tiniest backwards incompatible changes to the public API require a major version bump, won’t I end up at version 42.0.0 very rapidly?</h3><p>This is a question of responsible development and foresight. Incompatible changes should not be introduced lightly to software that has a lot of dependent code. The cost that must be incurred to upgrade can be significant. Having to bump major versions to release incompatible changes means you’ll think through the impact of your changes, and evaluate the cost/benefit ratio involved.</p>
+<h3 id="Documenting-the-entire-public-API-is-too-much-work"><a href="#Documenting-the-entire-public-API-is-too-much-work" class="headerlink" title="Documenting the entire public API is too much work!"></a>Documenting the entire public API is too much work!</h3><p>It is your responsibility as a professional developer to properly document software that is intended for use by others. Managing software complexity is a hugely important part of keeping a project efficient, and that’s hard to do if nobody knows how to use your software, or what methods are safe to call. In the long run, Semantic Versioning, and the insistence on a well defined public API can keep everyone and everything running smoothly.</p>
+<h3 id="What-do-I-do-if-I-accidentally-release-a-backwards-incompatible-change-as-a-minor-version"><a href="#What-do-I-do-if-I-accidentally-release-a-backwards-incompatible-change-as-a-minor-version" class="headerlink" title="What do I do if I accidentally release a backwards incompatible change as a minor version?"></a>What do I do if I accidentally release a backwards incompatible change as a minor version?</h3><p>As soon as you realize that you’ve broken the Semantic Versioning spec, fix the problem and release a new minor version that corrects the problem and restores backwards compatibility. Remember, it is unacceptable to modify versioned releases, even under this circumstance. If it’s appropriate, document the offending version and inform your users of the problem so that they are aware of the offending version.</p>
+<h3 id="What-should-I-do-if-I-update-my-own-dependencies-without-changing-the-public-API"><a href="#What-should-I-do-if-I-update-my-own-dependencies-without-changing-the-public-API" class="headerlink" title="What should I do if I update my own dependencies without changing the public API?"></a>What should I do if I update my own dependencies without changing the public API?</h3><p>That would be considered compatible since it does not affect the public API. Software that explicitly depends on the same dependencies as your package should have their own dependency specifications and the author will notice any conflicts. Determining whether the change is a patch level or minor level modification depends on whether you updated your dependencies in order to fix a bug or introduce new functionality. I would usually expect additional code for the latter instance, in which case it’s obviously a minor level increment.</p>
+<h3 id="What-should-I-do-if-the-bug-that-is-being-fixed-returns-the-code-to-being-compliant-with-the-public-API-i-e-the-code-was-incorrectly-out-of-sync-with-the-public-API-documentation"><a href="#What-should-I-do-if-the-bug-that-is-being-fixed-returns-the-code-to-being-compliant-with-the-public-API-i-e-the-code-was-incorrectly-out-of-sync-with-the-public-API-documentation" class="headerlink" title="What should I do if the bug that is being fixed returns the code to being compliant with the public API (i.e. the code was incorrectly out of sync with the public API documentation)?"></a>What should I do if the bug that is being fixed returns the code to being compliant with the public API (i.e. the code was incorrectly out of sync with the public API documentation)?</h3><p>Use your best judgment. If you have a huge audience that will be drastically impacted by changing the behavior back to what the public API intended, then it may be best to perform a major version release, even though the fix could strictly be considered a patch release. Remember, Semantic Versioning is all about conveying meaning by how the version number changes. If these changes are important to your users, use the version number to inform them.</p>
+<h3 id="How-should-I-handle-deprecating-functionality"><a href="#How-should-I-handle-deprecating-functionality" class="headerlink" title="How should I handle deprecating functionality?"></a>How should I handle deprecating functionality?</h3><p>Deprecating existing functionality is a normal part of software development and is often required to make forward progress. When you deprecate part of your public API, you should do two things: (1) update your documentation to let users know about the change, (2) issue a new minor release with the deprecation in place. Before you completely remove the functionality in a new major release there should be at least one minor release that contains the deprecation so that users can smoothly transition to the new API.</p>
+<h2 id="About"><a href="#About" class="headerlink" title="About"></a>About</h2><p>The Semantic Versioning specification is authored by <a href="http://tom.preston-werner.com/" target="_blank" rel="noopener">Tom Preston-Werner</a>, inventor of Gravatars and cofounder of GitHub.</p>
+<p>If you’d like to leave feedback, please <a href="https://github.com/mojombo/semver/issues" target="_blank" rel="noopener">open an issue on GitHub</a>.</p>
+<h2 id="License"><a href="#License" class="headerlink" title="License"></a>License</h2><p>Creative Commons - CC BY 3.0 <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank" rel="noopener">http://creativecommons.org/licenses/by/3.0/</a></p>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p><a href="https://semver.org/spec/v2.0.0-rc.1.html" target="_blank" rel="noopener">https://semver.org/spec/v2.0.0-rc.1.html</a></p>
+<p>BohuaFu收納</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Development/" rel="tag">#Development</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/04/13/dart/d-20200413-0901/" rel="next" title="Dart 社區與支援">
+                <i class="fa fa-chevron-left"></i> Dart 社區與支援
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2021/01/01/dart/d-20210001-0001/" rel="prev" title="Dart學習筆記與指引">
+                Dart學習筆記與指引 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="https://github.com/BohuaFu/AssetsBH/blob/master/bh/avater/bh_avatar_001.jpg?raw=true"
+                alt="Bohua Fu" />
+            
+              <p class="site-author-name" itemprop="name">Bohua Fu</p>
+              <p class="site-description motion-element" itemprop="description">The stars change, but the mind remains the same.</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/%7C%7C%20archive">
+              
+                  <span class="site-state-item-count">21</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/BohuaFu" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://bohuafu.github.io/" title="BH" target="_blank">BH</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Semantic-Versioning-2-0-0-rc-1"><span class="nav-number">1.</span> <span class="nav-text">Semantic Versioning 2.0.0-rc.1</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Semantic-Versioning-Specification-SemVer"><span class="nav-number">1.1.</span> <span class="nav-text">Semantic Versioning Specification (SemVer)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Why-Use-Semantic-Versioning"><span class="nav-number">1.2.</span> <span class="nav-text">Why Use Semantic Versioning?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#FAQ"><span class="nav-number">1.3.</span> <span class="nav-text">FAQ</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#How-should-I-deal-with-revisions-in-the-0-y-z-initial-development-phase"><span class="nav-number">1.3.1.</span> <span class="nav-text">How should I deal with revisions in the 0.y.z initial development phase?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#How-do-I-know-when-to-release-1-0-0"><span class="nav-number">1.3.2.</span> <span class="nav-text">How do I know when to release 1.0.0?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Doesn’t-this-discourage-rapid-development-and-fast-iteration"><span class="nav-number">1.3.3.</span> <span class="nav-text">Doesn’t this discourage rapid development and fast iteration?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#If-even-the-tiniest-backwards-incompatible-changes-to-the-public-API-require-a-major-version-bump-won’t-I-end-up-at-version-42-0-0-very-rapidly"><span class="nav-number">1.3.4.</span> <span class="nav-text">If even the tiniest backwards incompatible changes to the public API require a major version bump, won’t I end up at version 42.0.0 very rapidly?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Documenting-the-entire-public-API-is-too-much-work"><span class="nav-number">1.3.5.</span> <span class="nav-text">Documenting the entire public API is too much work!</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#What-do-I-do-if-I-accidentally-release-a-backwards-incompatible-change-as-a-minor-version"><span class="nav-number">1.3.6.</span> <span class="nav-text">What do I do if I accidentally release a backwards incompatible change as a minor version?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#What-should-I-do-if-I-update-my-own-dependencies-without-changing-the-public-API"><span class="nav-number">1.3.7.</span> <span class="nav-text">What should I do if I update my own dependencies without changing the public API?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#What-should-I-do-if-the-bug-that-is-being-fixed-returns-the-code-to-being-compliant-with-the-public-API-i-e-the-code-was-incorrectly-out-of-sync-with-the-public-API-documentation"><span class="nav-number">1.3.8.</span> <span class="nav-text">What should I do if the bug that is being fixed returns the code to being compliant with the public API (i.e. the code was incorrectly out of sync with the public API documentation)?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#How-should-I-handle-deprecating-functionality"><span class="nav-number">1.3.9.</span> <span class="nav-text">How should I handle deprecating functionality?</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#About"><span class="nav-number">1.4.</span> <span class="nav-text">About</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#License"><span class="nav-number">1.5.</span> <span class="nav-text">License</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-number">1.6.</span> <span class="nav-text">Reference</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Bohua Fu</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
