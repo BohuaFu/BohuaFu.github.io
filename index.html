@@ -388,6 +388,220 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://bohuafu.github.io/2020/04/22/dart/d-20200422-0001/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Bohua Fu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://github.com/BohuaFu/AssetsBH/blob/master/bh/avater/bh_avatar_001.jpg?raw=true">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BH, 我的部落格">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/04/22/dart/d-20200422-0001/" itemprop="url">command-line and server apps</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-04-22T06:00:01+08:00">
+                2020-04-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Get-started-command-line-and-server-apps"><a href="#Get-started-command-line-and-server-apps" class="headerlink" title="Get started: command-line and server apps"></a>Get started: command-line and server apps</h1><p>Follow these steps to start using the Dart SDK to develop command-line and server apps. First you’ll play with the Dart language in your browser, no download required. Then you’ll install the Dart SDK, write a small program, and run that program using the Dart VM. Finally, you’ll use an AOT (<em>ahead of time</em>) compiler to compile your finished program to native machine code, which you’ll execute using the Dart runtime.</p>
+<h2 id="1-Play-with-Dart-code-in-DartPad"><a href="#1-Play-with-Dart-code-in-DartPad" class="headerlink" title="1. Play with Dart code in DartPad"></a>1. Play with Dart code in DartPad</h2><p>With <a href="https://dart.dev/tools/dartpad" target="_blank" rel="noopener">DartPad</a> you can experiment with the Dart language and APIs, no download necessary.</p>
+<p>For example, here’s an embedded DartPad that lets you play with the code for a small Hello World program. Click <strong>Run</strong> to run the app; output appears in the console view. Try editing the source code — perhaps you’d like to change the greeting to use another language.</p>
+<p> <strong>Note:</strong> If you see an empty box instead of code, go to the <a href="https://dart.dev/tools/dartpad/troubleshoot" target="_blank" rel="noopener">DartPad troubleshooting page</a>.</p>
+<iframe src="https://dartpad.dev/embed-dart.html?theme=light&amp;run=dartpad&amp;split=false&amp;ga_id=hello_world" data-gtm-vis-first-on-screen-13029053_11="309531" data-gtm-vis-total-visible-time-13029053_11="100" data-gtm-vis-has-fired-13029053_11="1" style="box-sizing: border-box; border: 1px solid rgb(204, 204, 204); margin-bottom: 1rem; min-height: 150px; resize: vertical; width: 771.333px;"></iframe>
+
+<p>More information:</p>
+<ul>
+<li><a href="https://dart.dev/tools/dartpad" target="_blank" rel="noopener">DartPad documentation</a></li>
+<li><a href="https://dart.dev/guides/language/language-tour" target="_blank" rel="noopener">Dart language tour</a></li>
+<li><a href="https://dart.dev/guides/libraries/library-tour" target="_blank" rel="noopener">Dart library tour</a></li>
+</ul>
+<h2 id="2-Install-Dart"><a href="#2-Install-Dart" class="headerlink" title="2. Install Dart"></a>2. Install Dart</h2><p>Once you’re ready to move beyond DartPad and develop real apps, you need the Dart SDK.</p>
+<ul>
+<li><p>Windows</p>
+</li>
+<li></li>
+<li><p>Linux</p>
+</li>
+<li></li>
+<li><p>Mac</p>
+</li>
+</ul>
+<p>Use <a href="https://chocolatey.org/" target="_blank" rel="noopener">Chocolatey</a> to install a stable release of the Dart SDK:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C:\&gt; choco install dart-sdk</span><br></pre></td></tr></table></figure>
+
+<p> <strong>Important:</strong> For more information, including how to <strong>adjust your <code>PATH</code></strong>, see <a href="https://dart.dev/get-dart" target="_blank" rel="noopener">Get the Dart SDK</a>.</p>
+<h2 id="3-Get-more-command-line-developer-tools"><a href="#3-Get-more-command-line-developer-tools" class="headerlink" title="3. Get more command-line developer tools"></a>3. Get more command-line developer tools</h2><p>Install <a href="https://pub.dev/packages/stagehand" target="_blank" rel="noopener"><code>stagehand</code>,</a> which gives you templates for creating Dart apps:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ pub global activate stagehand</span><br></pre></td></tr></table></figure>
+
+<p>Note that although these instructions feature the command line, many IDEs support Dart development. Those IDEs use Stagehand behind the scenes when you create new Dart projects.</p>
+<p>More information:</p>
+<ul>
+<li><a href="https://dart.dev/tools" target="_blank" rel="noopener">Dart tools</a></li>
+<li><a href="https://dart.dev/tools/pub/cmd/pub-global#running-a-script-from-your-path" target="_blank" rel="noopener">Running a script from your path</a></li>
+</ul>
+<h2 id="4-Create-a-small-app"><a href="#4-Create-a-small-app" class="headerlink" title="4. Create a small app"></a>4. Create a small app</h2><p>Create a command-line app:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ mkdir cli</span><br><span class="line">$ cd cli</span><br><span class="line">$ stagehand console-full</span><br></pre></td></tr></table></figure>
+
+<p>These commands create a small Dart app that has the following:</p>
+<ul>
+<li>A main Dart source file, <code>bin/main.dart</code>, that contains a top-level <code>main()</code> function. This is the entrypoint for your app.</li>
+<li>An additional Dart file, <code>lib/cli.dart</code>, that contains the functionality of the app and is imported by the <code>main.dart</code> file.</li>
+<li>A pubspec file, <code>pubspec.yaml</code>, that contains the app’s metadata, including information about which <a href="https://dart.dev/guides/packages" target="_blank" rel="noopener">packages</a> the app depends on and which versions of those packages are required.</li>
+</ul>
+<h2 id="5-Get-the-app’s-dependencies"><a href="#5-Get-the-app’s-dependencies" class="headerlink" title="5. Get the app’s dependencies"></a>5. Get the app’s dependencies</h2><p>Use the <a href="https://dart.dev/tools/pub/cmd" target="_blank" rel="noopener"><code>pub</code></a> command to get the packages that the app depends on:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ pub get</span><br></pre></td></tr></table></figure>
+
+<h2 id="6-Run-the-app"><a href="#6-Run-the-app" class="headerlink" title="6. Run the app"></a>6. Run the app</h2><p>To run the app from the command line, use the Dart VM by running the <a href="https://dart.dev/tools/dart-vm" target="_blank" rel="noopener"><code>dart</code></a> command:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ dart bin&#x2F;main.dart</span><br><span class="line">Hello world: 42!</span><br></pre></td></tr></table></figure>
+
+<p>If you wish run the app with debugging support, see <a href="https://dart.dev/tools/dart-devtools" target="_blank" rel="noopener">DevTools</a>.</p>
+<h2 id="7-Modify-the-app"><a href="#7-Modify-the-app" class="headerlink" title="7. Modify the app"></a>7. Modify the app</h2><p>Let’s customize the app you just created.</p>
+<ol>
+<li><p>Edit <code>lib/cli.dart</code> to calculate a different result. For example, divide the previous value by two (for details about <code>~/</code>, see <a href="https://dart.dev/guides/language/language-tour#arithmetic-operators" target="_blank" rel="noopener">Arithmetic operators</a>):</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">int</span> calculate() &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">6</span> * <span class="number">7</span> ~/ <span class="number">2</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Save your changes.</p>
+</li>
+<li><p>Rerun the main entrypoint of your app:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ dart bin&#x2F;main.dart</span><br><span class="line">Hello world: 21!</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<p>More information: <a href="https://dart.dev/tutorials/server/cmdline" target="_blank" rel="noopener">Write command-line apps</a></p>
+<h2 id="8-Compile-for-production"><a href="#8-Compile-for-production" class="headerlink" title="8. Compile for production"></a>8. Compile for production</h2><p>The steps above used the Dart VM (<code>dart</code>) to run the app. The Dart VM is optimized for fast, incremental compilation to provide instant feedback during development. Now that your small app is done, it’s time to AOT compile your Dart code to optimized native machine code.</p>
+<p>Use the <code>dart2native</code> tool to AOT compile the program to machine code:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ dart2native bin&#x2F;main.dart -o bin&#x2F;my_app</span><br></pre></td></tr></table></figure>
+
+<p>Notice how the compiled program starts instantly, completing quickly:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ time bin&#x2F;my_app</span><br><span class="line">Hello world: 21!</span><br><span class="line"></span><br><span class="line">real	0m0.016s</span><br><span class="line">user	0m0.008s</span><br><span class="line">sys	0m0.006s</span><br></pre></td></tr></table></figure>
+
+<h2 id="What-next"><a href="#What-next" class="headerlink" title="What next?"></a>What next?</h2><p>Check out these resources:</p>
+<ul>
+<li>Additional tutorials and codelabs for Dart<ul>
+<li><a href="https://dart.dev/tutorials" target="_blank" rel="noopener">Tutorials</a></li>
+<li><a href="https://dart.dev/codelabs" target="_blank" rel="noopener">Codelabs</a></li>
+</ul>
+</li>
+<li>Dart language, libraries, and conventions<ul>
+<li><a href="https://dart.dev/samples" target="_blank" rel="noopener">Sample code</a></li>
+<li><a href="https://dart.dev/guides/language/language-tour" target="_blank" rel="noopener">Language tour</a></li>
+<li><a href="https://dart.dev/guides/libraries/library-tour" target="_blank" rel="noopener">Library tour</a></li>
+<li><a href="https://dart.dev/guides/language/effective-dart" target="_blank" rel="noopener">Effective Dart</a></li>
+</ul>
+</li>
+<li>Tools and libraries<ul>
+<li><a href="https://dart.dev/tools/sdk" target="_blank" rel="noopener">Dart SDK</a></li>
+<li><a href="https://dart.dev/tools" target="_blank" rel="noopener">Dart tools</a></li>
+<li><a href="https://dart.dev/tools#ides-and-editors" target="_blank" rel="noopener">IDEs</a></li>
+</ul>
+</li>
+</ul>
+<p>If you get stuck, find help at <a href="https://dart.dev/community" target="_blank" rel="noopener">Community and support.</a></p>
+<p>BohuaFu整理</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://bohuafu.github.io/2020/04/21/flutter/d-20200421-0003/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1364,130 +1578,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://bohuafu.github.io/2020/04/18/quotes/d-20200418-0002/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Bohua Fu">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://github.com/BohuaFu/AssetsBH/blob/master/bh/avater/bh_avatar_001.jpg?raw=true">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="BH, 我的部落格">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/04/18/quotes/d-20200418-0002/" itemprop="url">為了達到目的可以不擇手段</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-04-18T08:01:02+08:00">
-                2020-04-18
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="為了達到目的可以不擇手段"><a href="#為了達到目的可以不擇手段" class="headerlink" title="為了達到目的可以不擇手段"></a>為了達到目的可以不擇手段</h1><p>收錄其他大神的感悟，來源於<a href="jonny-huanghttps://jonny-huang.github.io/quotes/quotes_004/">jonny-huang</a>，感謝。</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2020/04/18/quotes/d-20200418-0002/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1542,7 +1632,7 @@
               
                 <a href="/archives/%7C%7C%20archive">
               
-                  <span class="site-state-item-count">33</span>
+                  <span class="site-state-item-count">34</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>

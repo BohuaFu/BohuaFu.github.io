@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-TW">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Dart," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Get started: command-line and server appsFollow these steps to start using the Dart SDK to develop command-line and server apps. First you’ll play with the Dart language in your browser, no download r">
+<meta property="og:type" content="article">
+<meta property="og:title" content="command-line and server apps">
+<meta property="og:url" content="https://bohuafu.github.io/2020/04/22/dart/d-20200422-0001/index.html">
+<meta property="og:site_name" content="BH, 我的部落格">
+<meta property="og:description" content="Get started: command-line and server appsFollow these steps to start using the Dart SDK to develop command-line and server apps. First you’ll play with the Dart language in your browser, no download r">
+<meta property="og:locale" content="zh_TW">
+<meta property="article:published_time" content="2020-04-21T22:00:01.000Z">
+<meta property="article:modified_time" content="2020-04-21T13:23:48.644Z">
+<meta property="article:author" content="Bohua Fu">
+<meta property="article:tag" content="Dart">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://bohuafu.github.io/2020/04/22/dart/d-20200422-0001/"/>
+
+
+
+
+
+  <title>command-line and server apps | BH, 我的部落格</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-TW">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">BH, 我的部落格</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">學習・分享・改變</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://bohuafu.github.io/2020/04/22/dart/d-20200422-0001/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Bohua Fu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://github.com/BohuaFu/AssetsBH/blob/master/bh/avater/bh_avatar_001.jpg?raw=true">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BH, 我的部落格">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">command-line and server apps</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-04-22T06:00:01+08:00">
+                2020-04-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="Get-started-command-line-and-server-apps"><a href="#Get-started-command-line-and-server-apps" class="headerlink" title="Get started: command-line and server apps"></a>Get started: command-line and server apps</h1><p>Follow these steps to start using the Dart SDK to develop command-line and server apps. First you’ll play with the Dart language in your browser, no download required. Then you’ll install the Dart SDK, write a small program, and run that program using the Dart VM. Finally, you’ll use an AOT (<em>ahead of time</em>) compiler to compile your finished program to native machine code, which you’ll execute using the Dart runtime.</p>
+<h2 id="1-Play-with-Dart-code-in-DartPad"><a href="#1-Play-with-Dart-code-in-DartPad" class="headerlink" title="1. Play with Dart code in DartPad"></a>1. Play with Dart code in DartPad</h2><p>With <a href="https://dart.dev/tools/dartpad" target="_blank" rel="noopener">DartPad</a> you can experiment with the Dart language and APIs, no download necessary.</p>
+<p>For example, here’s an embedded DartPad that lets you play with the code for a small Hello World program. Click <strong>Run</strong> to run the app; output appears in the console view. Try editing the source code — perhaps you’d like to change the greeting to use another language.</p>
+<p> <strong>Note:</strong> If you see an empty box instead of code, go to the <a href="https://dart.dev/tools/dartpad/troubleshoot" target="_blank" rel="noopener">DartPad troubleshooting page</a>.</p>
+<iframe src="https://dartpad.dev/embed-dart.html?theme=light&amp;run=dartpad&amp;split=false&amp;ga_id=hello_world" data-gtm-vis-first-on-screen-13029053_11="309531" data-gtm-vis-total-visible-time-13029053_11="100" data-gtm-vis-has-fired-13029053_11="1" style="box-sizing: border-box; border: 1px solid rgb(204, 204, 204); margin-bottom: 1rem; min-height: 150px; resize: vertical; width: 771.333px;"></iframe>
+
+<p>More information:</p>
+<ul>
+<li><a href="https://dart.dev/tools/dartpad" target="_blank" rel="noopener">DartPad documentation</a></li>
+<li><a href="https://dart.dev/guides/language/language-tour" target="_blank" rel="noopener">Dart language tour</a></li>
+<li><a href="https://dart.dev/guides/libraries/library-tour" target="_blank" rel="noopener">Dart library tour</a></li>
+</ul>
+<h2 id="2-Install-Dart"><a href="#2-Install-Dart" class="headerlink" title="2. Install Dart"></a>2. Install Dart</h2><p>Once you’re ready to move beyond DartPad and develop real apps, you need the Dart SDK.</p>
+<ul>
+<li><p>Windows</p>
+</li>
+<li></li>
+<li><p>Linux</p>
+</li>
+<li></li>
+<li><p>Mac</p>
+</li>
+</ul>
+<p>Use <a href="https://chocolatey.org/" target="_blank" rel="noopener">Chocolatey</a> to install a stable release of the Dart SDK:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C:\&gt; choco install dart-sdk</span><br></pre></td></tr></table></figure>
+
+<p> <strong>Important:</strong> For more information, including how to <strong>adjust your <code>PATH</code></strong>, see <a href="https://dart.dev/get-dart" target="_blank" rel="noopener">Get the Dart SDK</a>.</p>
+<h2 id="3-Get-more-command-line-developer-tools"><a href="#3-Get-more-command-line-developer-tools" class="headerlink" title="3. Get more command-line developer tools"></a>3. Get more command-line developer tools</h2><p>Install <a href="https://pub.dev/packages/stagehand" target="_blank" rel="noopener"><code>stagehand</code>,</a> which gives you templates for creating Dart apps:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ pub global activate stagehand</span><br></pre></td></tr></table></figure>
+
+<p>Note that although these instructions feature the command line, many IDEs support Dart development. Those IDEs use Stagehand behind the scenes when you create new Dart projects.</p>
+<p>More information:</p>
+<ul>
+<li><a href="https://dart.dev/tools" target="_blank" rel="noopener">Dart tools</a></li>
+<li><a href="https://dart.dev/tools/pub/cmd/pub-global#running-a-script-from-your-path" target="_blank" rel="noopener">Running a script from your path</a></li>
+</ul>
+<h2 id="4-Create-a-small-app"><a href="#4-Create-a-small-app" class="headerlink" title="4. Create a small app"></a>4. Create a small app</h2><p>Create a command-line app:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ mkdir cli</span><br><span class="line">$ cd cli</span><br><span class="line">$ stagehand console-full</span><br></pre></td></tr></table></figure>
+
+<p>These commands create a small Dart app that has the following:</p>
+<ul>
+<li>A main Dart source file, <code>bin/main.dart</code>, that contains a top-level <code>main()</code> function. This is the entrypoint for your app.</li>
+<li>An additional Dart file, <code>lib/cli.dart</code>, that contains the functionality of the app and is imported by the <code>main.dart</code> file.</li>
+<li>A pubspec file, <code>pubspec.yaml</code>, that contains the app’s metadata, including information about which <a href="https://dart.dev/guides/packages" target="_blank" rel="noopener">packages</a> the app depends on and which versions of those packages are required.</li>
+</ul>
+<h2 id="5-Get-the-app’s-dependencies"><a href="#5-Get-the-app’s-dependencies" class="headerlink" title="5. Get the app’s dependencies"></a>5. Get the app’s dependencies</h2><p>Use the <a href="https://dart.dev/tools/pub/cmd" target="_blank" rel="noopener"><code>pub</code></a> command to get the packages that the app depends on:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ pub get</span><br></pre></td></tr></table></figure>
+
+<h2 id="6-Run-the-app"><a href="#6-Run-the-app" class="headerlink" title="6. Run the app"></a>6. Run the app</h2><p>To run the app from the command line, use the Dart VM by running the <a href="https://dart.dev/tools/dart-vm" target="_blank" rel="noopener"><code>dart</code></a> command:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ dart bin&#x2F;main.dart</span><br><span class="line">Hello world: 42!</span><br></pre></td></tr></table></figure>
+
+<p>If you wish run the app with debugging support, see <a href="https://dart.dev/tools/dart-devtools" target="_blank" rel="noopener">DevTools</a>.</p>
+<h2 id="7-Modify-the-app"><a href="#7-Modify-the-app" class="headerlink" title="7. Modify the app"></a>7. Modify the app</h2><p>Let’s customize the app you just created.</p>
+<ol>
+<li><p>Edit <code>lib/cli.dart</code> to calculate a different result. For example, divide the previous value by two (for details about <code>~/</code>, see <a href="https://dart.dev/guides/language/language-tour#arithmetic-operators" target="_blank" rel="noopener">Arithmetic operators</a>):</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">int</span> calculate() &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">6</span> * <span class="number">7</span> ~/ <span class="number">2</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Save your changes.</p>
+</li>
+<li><p>Rerun the main entrypoint of your app:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ dart bin&#x2F;main.dart</span><br><span class="line">Hello world: 21!</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<p>More information: <a href="https://dart.dev/tutorials/server/cmdline" target="_blank" rel="noopener">Write command-line apps</a></p>
+<h2 id="8-Compile-for-production"><a href="#8-Compile-for-production" class="headerlink" title="8. Compile for production"></a>8. Compile for production</h2><p>The steps above used the Dart VM (<code>dart</code>) to run the app. The Dart VM is optimized for fast, incremental compilation to provide instant feedback during development. Now that your small app is done, it’s time to AOT compile your Dart code to optimized native machine code.</p>
+<p>Use the <code>dart2native</code> tool to AOT compile the program to machine code:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ dart2native bin&#x2F;main.dart -o bin&#x2F;my_app</span><br></pre></td></tr></table></figure>
+
+<p>Notice how the compiled program starts instantly, completing quickly:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ time bin&#x2F;my_app</span><br><span class="line">Hello world: 21!</span><br><span class="line"></span><br><span class="line">real	0m0.016s</span><br><span class="line">user	0m0.008s</span><br><span class="line">sys	0m0.006s</span><br></pre></td></tr></table></figure>
+
+<h2 id="What-next"><a href="#What-next" class="headerlink" title="What next?"></a>What next?</h2><p>Check out these resources:</p>
+<ul>
+<li>Additional tutorials and codelabs for Dart<ul>
+<li><a href="https://dart.dev/tutorials" target="_blank" rel="noopener">Tutorials</a></li>
+<li><a href="https://dart.dev/codelabs" target="_blank" rel="noopener">Codelabs</a></li>
+</ul>
+</li>
+<li>Dart language, libraries, and conventions<ul>
+<li><a href="https://dart.dev/samples" target="_blank" rel="noopener">Sample code</a></li>
+<li><a href="https://dart.dev/guides/language/language-tour" target="_blank" rel="noopener">Language tour</a></li>
+<li><a href="https://dart.dev/guides/libraries/library-tour" target="_blank" rel="noopener">Library tour</a></li>
+<li><a href="https://dart.dev/guides/language/effective-dart" target="_blank" rel="noopener">Effective Dart</a></li>
+</ul>
+</li>
+<li>Tools and libraries<ul>
+<li><a href="https://dart.dev/tools/sdk" target="_blank" rel="noopener">Dart SDK</a></li>
+<li><a href="https://dart.dev/tools" target="_blank" rel="noopener">Dart tools</a></li>
+<li><a href="https://dart.dev/tools#ides-and-editors" target="_blank" rel="noopener">IDEs</a></li>
+</ul>
+</li>
+</ul>
+<p>If you get stuck, find help at <a href="https://dart.dev/community" target="_blank" rel="noopener">Community and support.</a></p>
+<p>BohuaFu整理</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Dart/" rel="tag">#Dart</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/04/21/flutter/d-20200421-0003/" rel="next" title="Flutter安裝 (for Windows)">
+                <i class="fa fa-chevron-left"></i> Flutter安裝 (for Windows)
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2021/01/01/dart/d-20210001-0001/" rel="prev" title="Dart學習筆記與指引">
+                Dart學習筆記與指引 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="https://github.com/BohuaFu/AssetsBH/blob/master/bh/avater/bh_avatar_001.jpg?raw=true"
+                alt="Bohua Fu" />
+            
+              <p class="site-author-name" itemprop="name">Bohua Fu</p>
+              <p class="site-description motion-element" itemprop="description">The stars change, but the mind remains the same.</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/%7C%7C%20archive">
+              
+                  <span class="site-state-item-count">34</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/BohuaFu" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://bohuafu.github.io/" title="BH" target="_blank">BH</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Get-started-command-line-and-server-apps"><span class="nav-number">1.</span> <span class="nav-text">Get started: command-line and server apps</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Play-with-Dart-code-in-DartPad"><span class="nav-number">1.1.</span> <span class="nav-text">1. Play with Dart code in DartPad</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Install-Dart"><span class="nav-number">1.2.</span> <span class="nav-text">2. Install Dart</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-Get-more-command-line-developer-tools"><span class="nav-number">1.3.</span> <span class="nav-text">3. Get more command-line developer tools</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-Create-a-small-app"><span class="nav-number">1.4.</span> <span class="nav-text">4. Create a small app</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-Get-the-app’s-dependencies"><span class="nav-number">1.5.</span> <span class="nav-text">5. Get the app’s dependencies</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-Run-the-app"><span class="nav-number">1.6.</span> <span class="nav-text">6. Run the app</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-Modify-the-app"><span class="nav-number">1.7.</span> <span class="nav-text">7. Modify the app</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-Compile-for-production"><span class="nav-number">1.8.</span> <span class="nav-text">8. Compile for production</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#What-next"><span class="nav-number">1.9.</span> <span class="nav-text">What next?</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Bohua Fu</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
